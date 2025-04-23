@@ -52,7 +52,7 @@ const formSchema = z.object({
   subscribed: z.boolean(),
 });
 
-const products = ["Board Shorts", "Hoodies", "Gym Accessories"];
+const products = ["Board Shorts", "T-shirts & Tanks", "Pants", "All Products"];
 
 export default function ContactForm() {
   const form = useForm<z.infer<typeof formSchema>>({

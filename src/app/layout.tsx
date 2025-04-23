@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/app/layout/Header";
 import Footer from "@/app/layout/Footer";
 import { Toaster } from "sonner";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const grotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({
           backgroundPosition: "center center",
         }}
       >
+        <GoogleAnalytics gaId={process.env.MEASUREMENT_ID!} />
         <Header />
         <main className="">{children}</main>
         <Footer />

@@ -1,6 +1,6 @@
 "use server";
 
-import { wixClientServer } from "@/app/lib/wixClientServer";
+import { wixClientServer } from "@/lib/wixClientServer";
 import { CountryCode } from "libphonenumber-js";
 
 interface Subscriber {

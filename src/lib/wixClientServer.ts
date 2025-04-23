@@ -3,6 +3,8 @@ import { contacts } from "@wix/crm";
 import { items } from "@wix/data";
 import { emailSubscriptions } from "@wix/email-subscriptions";
 
+
+
 export const wixClientServer = createClient({
   modules: {
     contacts,

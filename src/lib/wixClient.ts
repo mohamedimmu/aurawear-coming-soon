@@ -1,10 +1,10 @@
 import { OAuthStrategy, createClient } from "@wix/sdk";
-import { emailSubscriptions } from "@wix/email-subscriptions";
 import Cookies from "js-cookie";
+import { analyticsSession } from "@wix/analytics-session";
 
 export const wixClient = createClient({
   modules: {
-    emailSubscriptions,
+    analyticsSession,
   },
   auth: OAuthStrategy({
     clientId: process.env.CLIENT_ID!,
