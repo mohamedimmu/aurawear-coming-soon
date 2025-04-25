@@ -1,6 +1,6 @@
 import DropSection from "@/components/DropSection";
-import ContactForm from "../components/ContactForm";
-import HeroSection from "../components/HeroSection";
+import ContactForm from "@/components/ContactForm";
+import HeroSection from "@/components/HeroSection";
 
 export default function RootLayout() {
   return (

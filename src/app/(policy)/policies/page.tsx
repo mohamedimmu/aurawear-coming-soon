@@ -24,17 +24,17 @@ const Policies = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-hero-background py-16 px-4 md:px-8">
+    <div className="bg-hero-background py-16 px-4 md:px-8 min-h-[80vh]">
       <div className="max-w-4xl mx-auto">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 mb-8 text-primary/80 hover:text-primary transition-colors group"
+          className="inline-flex items-center gap-2 mb-8 text-card-foreground/80 hover:text-card-foreground transition-colors group"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           <span className="font-medium">Back to home</span>
         </Link>
 
-        <h1 className="font-grotesk text-4xl md:text-5xl font-bold mb-12 text-primary">
+        <h1 className="font-grotesk text-4xl md:text-5xl font-bold mb-12 text-card-foreground">
           Policies
         </h1>
 
@@ -43,15 +43,15 @@ const Policies = () => {
             <Link
               key={policy.path}
               href={policy.path}
-              className="group p-6 md:p-8 rounded-2xl bg-peach/20 hover:bg-peach/30 transition-all"
+              className="group p-6 md:p-8 bg-peach/20 hover:bg-peach/30 transition-all"
             >
               <div className="flex items-start gap-4">
-                <FileText className="w-6 h-6 text-primary/60 group-hover:text-primary transition-colors" />
+                <FileText className="w-6 h-6 text-card-foreground/60 group-hover:text-card-foreground transition-colors" />
                 <div>
-                  <h2 className="font-grotesk text-xl md:text-2xl font-semibold mb-2 text-primary group-hover:text-primary/80 transition-colors">
+                  <h2 className="font-grotesk text-xl md:text-2xl font-semibold mb-2 text-card-foreground group-hover:text-card-foreground/80 transition-colors">
                     {policy.title}
                   </h2>
-                  <p className="text-primary/80 leading-relaxed">
+                  <p className="text-card-foreground/80 leading-relaxed">
                     {policy.description}
                   </p>
                 </div>

@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
-import "./globals.css";
-import Header from "@/app/layout/Header";
-import Footer from "@/app/layout/Footer";
+import { Inter, Space_Grotesk, Lora } from "next/font/google";
+import "@/app/styles/globals.css";
 import { Toaster } from "sonner";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
@@ -16,6 +14,12 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
+});
+
+const lora = Lora({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-lora",
 });
 
 export const metadata: Metadata = {
@@ -32,17 +36,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${grotesk.variable} antialiased bg-hero-background min-w-80`}
-        style={{
-          backgroundImage: "var(--bg-hero-dots)",
-          backgroundSize: "30px 30px",
-          backgroundPosition: "center center",
-        }}
+        className={`${inter.variable} ${lora.variable} ${grotesk.variable} antialiased bg-hero-background`}
       >
         <GoogleAnalytics gaId={process.env.MEASUREMENT_ID!} />
-        <Header />
-        <main className="">{children}</main>
-        <Footer />
+        <div className="">{children}</div>
         <Toaster />
       </body>
     </html>
