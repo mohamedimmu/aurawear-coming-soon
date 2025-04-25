@@ -15,6 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <div
+      className=""
       style={{
         backgroundImage: "var(--bg-hero-dots)",
         backgroundSize: "30px 30px",

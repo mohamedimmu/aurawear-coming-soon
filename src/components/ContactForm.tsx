@@ -28,6 +28,7 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 import { PhoneInput } from "./ui/phone-input";
 import en from "react-phone-number-input/locale/en.json";
 import { subscribeNewsletter } from "@/actions/subscribeNewsletter";
+import { Loader } from "lucide-react";
 
 const formSchema = z.object({
   firstName: z.string().min(2, "First name must be at least 2 characters"),
@@ -130,7 +131,7 @@ export default function ContactForm() {
                       <Input
                         placeholder="Enter your name"
                         autoFocus
-                        className=" h-12 bg-hero-background border-0 focus-visible:ring-2 focus-visible:ring-ring px-5 py-2"
+                        className=" h-12 bg-hero-background border-0 focus-visible:ring-1 focus-visible:ring-ring px-5 py-2"
                         {...field}
                       />
                     </FormControl>
@@ -152,7 +153,7 @@ export default function ContactForm() {
                       <Input
                         placeholder="Enter your name"
                         autoFocus
-                        className="h-12 bg-hero-background border-0 focus-visible:ring-2 focus-visible:ring-ring px-5 py-2"
+                        className="h-12 bg-hero-background border-0 focus-visible:ring-1 focus-visible:ring-ring px-5 py-2"
                         {...field}
                       />
                     </FormControl>
@@ -175,7 +176,7 @@ export default function ContactForm() {
                     <Input
                       type="email"
                       placeholder="you@example.com"
-                      className="h-12 bg-hero-background border-0 focus-visible:ring-2 focus-visible:ring-ring px-5 py-2"
+                      className="h-12 bg-hero-background border-0 focus-visible:ring-1 focus-visible:ring-ring px-5 py-2"
                       {...field}
                     />
                   </FormControl>
@@ -198,7 +199,7 @@ export default function ContactForm() {
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger className="data-[state=open]:ring-2 data-[state=open]:ring-ring !h-12 w-full bg-hero-background border-0 px-5 py-2">
+                      <SelectTrigger className="data-[state=open]:ring-1 data-[state=open]:ring-ring !h-12 w-full bg-hero-background border-0 px-5 py-2">
                         <SelectValue placeholder="Select your interest" />
                       </SelectTrigger>
                     </FormControl>
@@ -249,7 +250,7 @@ export default function ContactForm() {
                     <Checkbox
                       checked={field.value}
                       onCheckedChange={field.onChange}
-                      className="bg-hero-background text-peach data-[state=checked]:bg-hero-background data-[state=checked]:text-black focus-visible:ring-ring w-5 h-5 focus-within:ring-0"
+                      className="peer h-4 w-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground bg-hero-background"
                     />
                   </FormControl>
                   <FormLabel className="text-card-foreground font-medium">
@@ -264,11 +265,16 @@ export default function ContactForm() {
               <Button
                 type="submit"
                 variant="default"
-                className="bg-black hover:bg-card-black/80 text-white px-8 py-3  w-full font-grotesk font-bold text-lg shadow-lg transition-all hover:scale-105 focus:outline-none  active:scale-100 h-12 duration-500"
+                className="bg-primary hover:bg-primary/80 text-white px-8 py-3  w-full font-grotesk font-bold text-lg shadow-lg transition-all focus:outline-none  active:scale-100 h-12 duration-500"
               >
-                {form.formState.isSubmitting
-                  ? "Submitting..."
-                  : "Get Early Access"}
+                {form.formState.isSubmitting ? (
+                  <div className="flex items-center justify-center gap-2">
+                    <Loader className="animate-spin w-6 h-6" />
+                    <span>Submitting...</span>
+                  </div>
+                ) : (
+                  "Get Early Access"
+                )}
               </Button>
             </div>
           </div>

@@ -63,7 +63,7 @@ const InputComponent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <Input
     className={cn(
-      "h-12 bg-hero-background border-0 focus-visible:ring-2 focus-visible:ring-ring px-5 py-2",
+      "h-12 bg-hero-background border-0 focus-visible:ring-1 focus-visible:ring-ring px-5 py-2",
       className
     )}
     {...props}
@@ -95,7 +95,7 @@ const CountrySelect = ({
         <Button
           type="button"
           variant="outline"
-          className="flex gap-1 border-r-0 focus:z- h-12 bg-hero-background border-0 data-[state=open]:ring-2 data-[state=open]:ring-ring  px-5 py-2 cursor-pointer"
+          className="flex gap-1 border-r-0 focus:z- h-12 bg-hero-background border-0 data-[state=open]:ring-1 data-[state=open]:ring-ring  px-5 py-2 cursor-pointer"
           disabled={disabled}
         >
           <FlagComponent
@@ -166,7 +166,10 @@ const CountrySelectOption = ({
   onChange,
 }: CountrySelectOptionProps) => {
   return (
-    <CommandItem className="gap-2 cursor-pointer" onSelect={() => onChange(country)}>
+    <CommandItem
+      className="gap-2 cursor-pointer"
+      onSelect={() => onChange(country)}
+    >
       <FlagComponent country={country} countryName={countryName} />
       <span className="flex-1 text-sm">{countryName}</span>
       <span className="text-sm text-foreground/50">{`+${RPNInput.getCountryCallingCode(
@@ -186,7 +189,7 @@ const FlagComponent = ({ country, countryName }: RPNInput.FlagProps) => {
 
   return (
     <span className="flex h-4 w-6 overflow-hidden rounded-sm bg-foreground/20 [&_svg]:size-full flag-svg">
-      {Flag && <Flag title={countryName}  />}
+      {Flag && <Flag title={countryName} />}
     </span>
   );
 };
