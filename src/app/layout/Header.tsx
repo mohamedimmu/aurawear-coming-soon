@@ -11,7 +11,7 @@ export default function Header() {
         <div className="relative w-[64px] h-[64px]">
           <Image src={Logo} alt="Aurawear Logo" fill className="object-cover" />
         </div>
-        <h2 className="text-tracking-tight text-2xl xss:text-3xl md:text-5xl font-bold font-inter uppercase">
+        <h2 className="tracking-wider text-2xl xss:text-3xl md:text-5xl font-bold font-inter uppercase">
           Aura wear
         </h2>
       </div>
