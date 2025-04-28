@@ -3,7 +3,7 @@ import { Inter, Space_Grotesk, Lora } from "next/font/google";
 import "@/app/styles/globals.css";
 import { Toaster } from "sonner";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { env } from "@/env";
+import { env } from "@/env/server";
 
 const grotesk = Space_Grotesk({
   subsets: ["latin"],

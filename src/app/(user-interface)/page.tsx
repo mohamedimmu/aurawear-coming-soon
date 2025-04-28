@@ -2,7 +2,7 @@ import DropSection from "@/components/DropSection";
 import ContactForm from "@/components/ContactForm";
 import HeroSection from "@/components/HeroSection";
 import { Metadata } from "next";
-import { env } from "@/env";
+import { env } from "@/env/server";
 
 export const metadata: Metadata = {
   title: "Coming Soon",

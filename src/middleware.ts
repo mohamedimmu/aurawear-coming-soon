@@ -1,6 +1,6 @@
 import { createClient, OAuthStrategy } from "@wix/sdk";
 import { NextRequest, NextResponse } from "next/server";
-import { env } from "./env";
+import { env } from "./env/client";
 
 export async function middleware(request: NextRequest) {
   if (!request.cookies.get("session")) {
