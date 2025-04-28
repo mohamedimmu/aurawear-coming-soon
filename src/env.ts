@@ -7,7 +7,7 @@ export const env = createEnv({
     API_KEY: z.string().min(1),
     ACCOUNT_ID: z.string().min(1),
     MEASUREMENT_ID: z.string().min(1),
-    VERCEL_URL: z.string().url(),
+    VERCEL_URL: z.string(),
   },
   client: {
     NEXT_PUBLIC_CLIENT_ID: z.string().min(1),
