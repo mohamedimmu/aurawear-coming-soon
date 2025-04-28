@@ -44,7 +44,6 @@ async function saveFormData(formData: Subscriber) {
     const savedItem = await wixClientServer.items.save("FormData", {
       ...formData,
     });
-    console.log("Form data saved successfully:", savedItem);
     return savedItem;
   } catch (error) {
     console.error("Error saving form data:", error);
@@ -58,7 +57,7 @@ async function saveFormData(formData: Subscriber) {
 async function createContact(formData: Subscriber) {
   const { firstName, lastName, email, phone, countryCode } = formData;
   try {
-    const contact = await wixClientServer.contacts.createContact(
+    await wixClientServer.contacts.createContact(
       {
         name: {
           first: firstName,
@@ -86,7 +85,6 @@ async function createContact(formData: Subscriber) {
         allowDuplicates: false,
       }
     );
-    console.log("Contact created successfully:", contact);
     return { success: true };
   } catch (e) {
     const error = e as ContactError;

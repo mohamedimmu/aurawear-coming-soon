@@ -83,9 +83,7 @@ export default function ContactForm() {
           countryCallingCode: `+${countryCallingCode}`,
           countryName,
         };
-        console.log("Form data:", formattedData);
         const response = await subscribeNewsletter(formattedData);
-        console.log("Data:", status);
         if (response.success) {
           toast.success(
             response.message ||
@@ -103,8 +101,7 @@ export default function ContactForm() {
         }
         form.reset();
       }
-    } catch (error) {
-      console.log(error);
+    } catch{
       toast.error("Something went wrong. Please try again.");
     }
   };
