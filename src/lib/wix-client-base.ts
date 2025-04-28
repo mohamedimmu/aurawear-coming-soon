@@ -1,4 +1,4 @@
-import { envClient } from "@/env/client";
+import { env } from "@/env";
 import {
   backInStockNotifications,
   checkout,
@@ -29,7 +29,7 @@ export function getWixClient(tokens: Tokens | undefined) {
       files,
     },
     auth: OAuthStrategy({
-      clientId: envClient.NEXT_PUBLIC_CLIENT_ID,
+      clientId: env.NEXT_PUBLIC_CLIENT_ID,
       tokens,
     }),
   });
