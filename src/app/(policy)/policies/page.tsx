@@ -1,6 +1,11 @@
 import React from "react";
 import { FileText, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Policies",
+};
 
 const Policies = () => {
   const policies = [
@@ -24,17 +29,17 @@ const Policies = () => {
   ];
 
   return (
-    <div className="bg-hero-background py-16 px-4 md:px-8 min-h-[80vh]">
-      <div className="max-w-4xl mx-auto">
+    <div className="bg-hero-background min-h-[80vh] px-4 py-16 md:px-8">
+      <div className="mx-auto max-w-4xl">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 mb-8 text-card-foreground/80 hover:text-card-foreground transition-colors group"
+          className="text-card-foreground/80 hover:text-card-foreground group mb-8 inline-flex items-center gap-2 transition-colors"
         >
-          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+          <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
           <span className="font-medium">Back to home</span>
         </Link>
 
-        <h1 className="font-grotesk text-4xl md:text-5xl font-bold mb-12 text-card-foreground">
+        <h1 className="font-grotesk text-card-foreground mb-12 text-4xl font-bold md:text-5xl">
           Policies
         </h1>
 
@@ -43,12 +48,12 @@ const Policies = () => {
             <Link
               key={policy.path}
               href={policy.path}
-              className="group p-6 md:p-8 bg-peach/20 hover:bg-peach/30 transition-all"
+              className="group bg-peach/20 hover:bg-peach/30 p-6 transition-all md:p-8"
             >
               <div className="flex items-start gap-4">
-                <FileText className="w-6 h-6 text-card-foreground/60 group-hover:text-card-foreground transition-colors" />
+                <FileText className="text-card-foreground/60 group-hover:text-card-foreground h-6 w-6 transition-colors" />
                 <div>
-                  <h2 className="font-grotesk text-xl md:text-2xl font-semibold mb-2 text-card-foreground group-hover:text-card-foreground/80 transition-colors">
+                  <h2 className="font-grotesk text-card-foreground group-hover:text-card-foreground/80 mb-2 text-xl font-semibold transition-colors md:text-2xl">
                     {policy.title}
                   </h2>
                   <p className="text-card-foreground/80 leading-relaxed">

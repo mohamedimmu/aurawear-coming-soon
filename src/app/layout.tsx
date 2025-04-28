@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk, Lora } from "next/font/google";
 import "@/app/styles/globals.css";
 import { Toaster } from "sonner";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { env } from "@/env";
 
 const grotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -23,9 +24,11 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  title: "Aurawear - Coming Soon",
-  description:
-    "Aurawear is more than just apparel — it's a movement. Created by athletes, for athletes, we fuse high-performance athletic wear with the bold aesthetics of streetwear and the comfort of casual wear. Every piece is built to move, perform, and inspire — whether you're pushing limits in the gym, out on the streets, or just living your everyday hustle.",
+  title: {
+    template: "Aurawear - %s",
+    absolute: "Aurawear",
+  },
+  description: "Aurawear is more than just apparel — it's a movement. Created by athletes, for athletes, we fuse high-performance athletic wear with the bold aesthetics of streetwear and the comfort of casual wear. Every piece is built to move, perform, and inspire — whether you're pushing limits in the gym, out on the streets, or just living your everyday hustle.",
 };
 
 export default function RootLayout({
@@ -38,7 +41,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${lora.variable} ${grotesk.variable} antialiased bg-hero-background`}
       >
-        <GoogleAnalytics gaId={process.env.MEASUREMENT_ID!} />
+        <GoogleAnalytics gaId={env.MEASUREMENT_ID} />
         <div className="">{children}</div>
         <Toaster />
       </body>

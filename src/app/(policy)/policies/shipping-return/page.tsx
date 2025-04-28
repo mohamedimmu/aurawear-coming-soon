@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { shippingData } from "@/app/(policy)/policies/data";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Shipping Policy",
+};
 
 const ShippingReturn = () => {
   return (

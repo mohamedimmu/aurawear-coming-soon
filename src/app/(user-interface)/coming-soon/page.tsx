@@ -2,14 +2,14 @@ import DropSection from "@/components/DropSection";
 import ContactForm from "@/components/ContactForm";
 import HeroSection from "@/components/HeroSection";
 import { Metadata } from "next";
-import { env } from "@/env";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Coming Soon",
 };
 
-export default function RootLayout() {
-  console.log(env.SITE_ID, env.NEXT_PUBLIC_CLIENT_ID, env.NEXT_PUBLIC_BASE_URL);
+export default function ComingSoon() {
+  redirect("/");
   return (
     <div className="space-y-8 md:space-y-12">
       <HeroSection />

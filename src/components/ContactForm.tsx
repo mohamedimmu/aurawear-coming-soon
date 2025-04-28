@@ -39,7 +39,7 @@ const formSchema = z.object({
     .min(1, "Phone number is required")
     .refine(
       (value) => isValidPhoneNumber(value),
-      "Please enter a valid phone number"
+      "Please enter a valid phone number",
     ),
   // countryCode: z.string(),
   productInterestedIn: z
@@ -48,7 +48,7 @@ const formSchema = z.object({
     .refine(
       (value) =>
         products.map((p) => p.toLowerCase()).includes(value.toLowerCase()),
-      "Please select a valid product"
+      "Please select a valid product",
     ),
   subscribed: z.boolean(),
 });
@@ -83,28 +83,25 @@ export default function ContactForm() {
           countryCallingCode: `+${countryCallingCode}`,
           countryName,
         };
-        console.log("Form data:", formattedData);
         const response = await subscribeNewsletter(formattedData);
-        console.log("Data:", status);
         if (response.success) {
           toast.success(
             response.message ||
-              "Thank you, We'll notify you first about the drop! 🎉"
+              "Thank you, We'll notify you first about the drop! 🎉",
           );
         } else if (response.duplicate && !response.success) {
           toast.info(
             response.message ||
-              "Thank you for your interest, but you've already subscribed! 😊"
+              "Thank you for your interest, but you've already subscribed! 😊",
           );
         } else {
           toast.error(
-            response.message || "Something went wrong. Please try again."
+            response.message || "Something went wrong. Please try again.",
           );
         }
         form.reset();
       }
-    } catch (error) {
-      console.log(error);
+    } catch {
       toast.error("Something went wrong. Please try again.");
     }
   };
@@ -112,13 +109,13 @@ export default function ContactForm() {
   return (
     <section
       id="contact-form"
-      className="relative mx-auto w-full max-w-2xl z-30 px-6 md:px- py-6 md:py-12"
+      className="md:px- relative z-30 mx-auto w-full max-w-2xl px-6 py-6 md:py-12"
     >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="bg-peach/90 backdrop-blur-sm px-6 md:px-12 py-8 md:py-12 shadow-xl flex flex-col gap-8 animate-fade-in">
+          <div className="bg-peach/90 animate-fade-in flex flex-col gap-8 px-6 py-8 shadow-xl backdrop-blur-sm md:px-12 md:py-12">
             {/* First and Last Name*/}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <FormField
                 control={form.control}
                 name="firstName"
@@ -131,7 +128,7 @@ export default function ContactForm() {
                       <Input
                         placeholder="Enter your name"
                         autoFocus
-                        className=" h-12 bg-hero-background border-0 focus-visible:ring-1 focus-visible:ring-ring px-5 py-2"
+                        className="bg-hero-background focus-visible:ring-ring h-12 border-0 px-5 py-2 focus-visible:ring-1"
                         {...field}
                       />
                     </FormControl>
@@ -153,7 +150,7 @@ export default function ContactForm() {
                       <Input
                         placeholder="Enter your name"
                         autoFocus
-                        className="h-12 bg-hero-background border-0 focus-visible:ring-1 focus-visible:ring-ring px-5 py-2"
+                        className="bg-hero-background focus-visible:ring-ring h-12 border-0 px-5 py-2 focus-visible:ring-1"
                         {...field}
                       />
                     </FormControl>
@@ -176,7 +173,7 @@ export default function ContactForm() {
                     <Input
                       type="email"
                       placeholder="you@example.com"
-                      className="h-12 bg-hero-background border-0 focus-visible:ring-1 focus-visible:ring-ring px-5 py-2"
+                      className="bg-hero-background focus-visible:ring-ring h-12 border-0 px-5 py-2 focus-visible:ring-1"
                       {...field}
                     />
                   </FormControl>
@@ -199,7 +196,7 @@ export default function ContactForm() {
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger className="data-[state=open]:ring-1 data-[state=open]:ring-ring !h-12 w-full bg-hero-background border-0 px-5 py-2">
+                      <SelectTrigger className="data-[state=open]:ring-ring bg-hero-background !h-12 w-full border-0 px-5 py-2 data-[state=open]:ring-1">
                         <SelectValue placeholder="Select your interest" />
                       </SelectTrigger>
                     </FormControl>
@@ -245,12 +242,12 @@ export default function ContactForm() {
               control={form.control}
               name="subscribed"
               render={({ field }) => (
-                <FormItem className="flex items-center space-x-3 space-y-0">
+                <FormItem className="flex items-center space-y-0 space-x-3">
                   <FormControl>
                     <Checkbox
                       checked={field.value}
                       onCheckedChange={field.onChange}
-                      className="peer h-4 w-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground bg-hero-background"
+                      className="peer border-primary focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground bg-hero-background h-4 w-4 shrink-0 rounded-sm border shadow focus-visible:ring-1 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                     />
                   </FormControl>
                   <FormLabel className="text-card-foreground font-medium">
@@ -265,11 +262,11 @@ export default function ContactForm() {
               <Button
                 type="submit"
                 variant="default"
-                className="bg-primary hover:bg-primary/80 text-white px-8 py-3  w-full font-grotesk font-bold text-lg shadow-lg transition-all focus:outline-none  active:scale-100 h-12 duration-500"
+                className="bg-primary hover:bg-primary/80 font-grotesk h-12 w-full px-8 py-3 text-lg font-bold text-white shadow-lg transition-all duration-500 focus:outline-none active:scale-100"
               >
                 {form.formState.isSubmitting ? (
                   <div className="flex items-center justify-center gap-2">
-                    <Loader className="animate-spin w-6 h-6" />
+                    <Loader className="h-6 w-6 animate-spin" />
                     <span>Submitting...</span>
                   </div>
                 ) : (
