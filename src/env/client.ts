@@ -11,7 +11,11 @@ export const envClient = createEnv({
   client: {
     NEXT_PUBLIC_CLIENT_ID: z.string().min(1),
   },
-  experimental__runtimeEnv: {
+  runtimeEnv: {
+    SITE_ID: process.env.SITE_ID,
+    API_KEY: process.env.API_KEY,
+    ACCOUNT_ID: process.env.ACCOUNT_ID,
+    MEASUREMENT_ID: process.env.MEASUREMENT_ID,
     NEXT_PUBLIC_CLIENT_ID: process.env.NEXT_PUBLIC_CLIENT_ID,
   },
 });
