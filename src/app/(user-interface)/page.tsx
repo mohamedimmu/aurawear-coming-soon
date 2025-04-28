@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout() {
-  console.log(envServer.VERCEL_URL, envServer.SITE_ID);
+  console.log(envServer.SITE_ID);
   return (
     <div className="space-y-8 md:space-y-12">
       <HeroSection />
