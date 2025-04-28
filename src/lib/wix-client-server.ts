@@ -2,6 +2,7 @@ import { ApiKeyStrategy, createClient } from "@wix/sdk";
 import { contacts } from "@wix/crm";
 import { items } from "@wix/data";
 import { emailSubscriptions } from "@wix/email-subscriptions";
+import { env } from "@/env";
 // import { envServer } from "@/env/server";
 
 export const wixClientServer = createClient({
@@ -11,8 +12,8 @@ export const wixClientServer = createClient({
     emailSubscriptions,
   },
   auth: ApiKeyStrategy({
-    siteId: process.env.SITE_ID!,
-    apiKey: process.env.API_KEY!,
-    accountId: process.env.ACCOUNT_ID!,
+    siteId: env.SITE_ID,
+    apiKey: env.API_KEY,
+    accountId: env.ACCOUNT_ID,
   }),
 });
