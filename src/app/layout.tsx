@@ -3,7 +3,7 @@ import { Inter, Space_Grotesk, Lora } from "next/font/google";
 import "@/app/styles/globals.css";
 import { Toaster } from "sonner";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { env } from "@/env/server";
+import { envServer } from "@/env/server";
 
 const grotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -41,7 +41,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${lora.variable} ${grotesk.variable} antialiased bg-hero-background`}
       >
-        <GoogleAnalytics gaId={env.MEASUREMENT_ID} />
+        <GoogleAnalytics gaId={envServer.MEASUREMENT_ID} />
         <div className="">{children}</div>
         <Toaster />
       </body>
