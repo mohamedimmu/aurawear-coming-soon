@@ -6,7 +6,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-grotesk: var(--font-lora);
+  --font-lora: var(--font-lora);
   --font-inter: var(--font-inter);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -130,11 +130,15 @@
 @theme {
   --color-peach: #ffc891;
   --color-hero-background: #fbf6ee;
+  --color-light-grey: #eaeaea;
   --animate-hero-fade-in: hero-fade-in 0.7s
     cubic-bezier(0.66, -0.07, 0.54, 1.29) 0.1s both;
 
   --breakpoint-xxs: 24.375rem; /* 320px */
   --breakpoint-xs: 30rem; /* 480px */
+  --color-navbar-icon-dark: oklch(0.141 0.005 285.823);
+  --color-foreground-dark: oklch(0.141 0.005 285.823);
+  --color-foreground-light: oklch(0.985 0 0);
 
   @keyframes hero-fade-in {
     0% {
@@ -151,5 +155,15 @@
 @layer utilities {
   .flag-svg > svg {
     @apply !w-full;
+  }
+  .container-custom {
+    @apply mx-auto px-4 md:px-6 lg:px-8;
+  }
+  .navbar-icon {
+    @apply text-navbar-icon-dark dark:text-navbar-icon-dark !h-5 !w-5;
+  }
+
+  .underline-link {
+    @apply after:bg-primary relative inline-block after:absolute after:bottom-0 after:left-0 after:block after:h-[2px] after:w-0 after:transition-all after:duration-300 hover:after:w-full;
   }
 }

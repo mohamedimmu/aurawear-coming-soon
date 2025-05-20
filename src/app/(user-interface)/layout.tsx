@@ -1,6 +1,5 @@
-import Header from "@/layout/Header";
+import Navbar from "@/layout/Navbar";
 import Footer from "@/layout/Footer";
-
 
 export default function RootLayout({
   children,
@@ -8,15 +7,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div
-      className=""
-      style={{
-        backgroundImage: "var(--bg-hero-dots)",
-        backgroundSize: "30px 30px",
-        backgroundPosition: "center center",
-      }}
-    >
-      <Header />
+    <div>
+      <Navbar />
       <main>{children}</main>
       <Footer />
     </div>
