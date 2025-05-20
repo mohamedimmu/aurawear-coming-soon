@@ -2,6 +2,7 @@ import React from "react";
 import { FileText, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { Metadata } from "next";
+import { Card, CardContent } from "@/components/ui/card";
 
 export const metadata: Metadata = {
   title: "Policies",
@@ -29,7 +30,7 @@ const Policies = () => {
   ];
 
   return (
-    <div className="bg-hero-background min-h-[80vh] px-4 py-16 md:px-8">
+    <div className="bg-background min-h-[80vh] px-4 py-16 md:px-8">
       <div className="mx-auto max-w-4xl">
         <Link
           href="/"
@@ -39,29 +40,30 @@ const Policies = () => {
           <span className="font-medium">Back to home</span>
         </Link>
 
-        <h1 className="font-grotesk text-card-foreground mb-12 text-4xl font-bold md:text-5xl">
+        <h1 className="font-lora text-card-foreground mb-12 text-4xl font-bold md:text-5xl">
           Policies
         </h1>
 
         <div className="grid gap-6">
           {policies.map((policy) => (
-            <Link
+            <Card
               key={policy.path}
-              href={policy.path}
-              className="group bg-peach/20 hover:bg-peach/30 p-6 transition-all md:p-8"
+              className="bg-card hover:bg-accent group shadow-sm duration-300 transition-all ease-in-out"
             >
-              <div className="flex items-start gap-4">
-                <FileText className="text-card-foreground/60 group-hover:text-card-foreground h-6 w-6 transition-colors" />
-                <div>
-                  <h2 className="font-grotesk text-card-foreground group-hover:text-card-foreground/80 mb-2 text-xl font-semibold transition-colors md:text-2xl">
-                    {policy.title}
-                  </h2>
-                  <p className="text-card-foreground/80 leading-relaxed">
-                    {policy.description}
-                  </p>
-                </div>
-              </div>
-            </Link>
+              <Link href={policy.path} className="p-4">
+                <CardContent className="flex items-start gap-4">
+                  <FileText className="text-card-foreground group-hover:text-accent-foreground h-6 w-6 transition-colors" />
+                  <div>
+                    <h2 className="font-lora text-card-foreground group-hover:text-accent-foreground mb-2 text-xl font-semibold transition-colors md:text-2xl">
+                      {policy.title}
+                    </h2>
+                    <p className="text-card-foreground leading-relaxed">
+                      {policy.description}
+                    </p>
+                  </div>
+                </CardContent>
+              </Link>
+            </Card>
           ))}
         </div>
       </div>
