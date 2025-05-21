@@ -30,33 +30,38 @@ const ProductCarousel = async ({ title, slug }: Props) => {
   const carouselId = `carousel-${slug}`;
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="w-full">
-        <div className="mb-6 flex items-center justify-between">
-          <h2 className="text-2xl font-lora font-bold">{title}</h2>
-          <div className="hidden items-center gap-4 md:flex">
-            <Button variant="ghost" className="!p-0 hover:!bg-transparent">
-              <Link
-                href="#"
-                className="hover:text-muted-foreground !text-base font-medium"
-              >
-                Shop
-              </Link>
-            </Button>
-            <CarouselButtons carouselId={carouselId} />
+    <div className="w-full py-8">
+      <div className="mb-6 flex items-center justify-between px-6 md:px-8 lg:px-12">
+        <h2 className="font-lora text-2xl font-bold">{title}</h2>
+        <div className="hidden items-center gap-4 md:flex">
+          <Button variant="ghost" className="!p-0 hover:!bg-transparent">
+            <Link
+              href="#"
+              className="hover:text-muted-foreground !text-base font-medium"
+            >
+              Shop
+            </Link>
+          </Button>
+          <CarouselButtons carouselId={carouselId} />
+        </div>
+      </div>
+      <section className="relative w-full overflow-hidden">
+        <div className="pl-6 md:pl-8 lg:pl-12">
+          <div className="relative">
+            {/* -mr-[calc(100vw-100%)] */}
+            <CarouselSlider id={carouselId}>
+              {products.map((product) => (
+                <div
+                  key={product._id}
+                  className="min-w-[220px] snap-start sm:min-w-[320px] md:min-w-[390px]"
+                >
+                  <ProductCard product={product} />
+                </div>
+              ))}
+            </CarouselSlider>
           </div>
         </div>
-        <CarouselSlider id={carouselId}>
-          {products.map((product) => (
-            <div
-              key={product._id}
-              className="min-w-[220px] snap-start sm:min-w-[320px] md:min-w-[350px]"
-            >
-              <ProductCard product={product} />
-            </div>
-          ))}
-        </CarouselSlider>
-      </div>
+      </section>
     </div>
   );
 };

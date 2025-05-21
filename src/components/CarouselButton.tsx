@@ -18,8 +18,9 @@ const CarouselButtons = ({ carouselId }: CarouselButtonsProps) => {
 
     const checkScrollButtons = () => {
       const { scrollLeft, scrollWidth, clientWidth } = carousel;
+      console.log(scrollLeft, scrollWidth, clientWidth);
       setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 10);
+      setCanScrollRight(scrollLeft + clientWidth  < scrollWidth);
     };
 
     // Initial check

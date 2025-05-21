@@ -12,10 +12,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <div
-      className="flex w-full max-w-sm cursor-pointer flex-col"
+      className="flex w-full cursor-pointer flex-col"
       // onClick={handleCardClick}
     >
-      <div className="mb-4 aspect-square w-full bg-gray-100">
+      <div className="mb-4 aspect-square w-full bg-muted">
         <WixImage
           mediaIdentifier={mainImage?.url}
           alt={mainImage?.altText}

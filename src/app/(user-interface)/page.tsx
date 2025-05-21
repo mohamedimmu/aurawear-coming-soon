@@ -23,8 +23,8 @@ export default function RootLayout() {
       </Suspense>
       <ComingSoonSection />
       <PremiumActiveWear />
-      <Newsletter />
       <BenefitsSection />
+      <Newsletter />
       {/* <HeroSection />
       <ContactForm />
       <DropSection /> */}
