@@ -35,10 +35,10 @@ const ProductCarousel = async ({ title, slug }: Props) => {
         <div className="mb-6 flex items-center justify-between">
           <h2 className="text-2xl font-lora font-bold">{title}</h2>
           <div className="hidden items-center gap-4 md:flex">
-            <Button variant="ghost">
+            <Button variant="ghost" className="!p-0 hover:!bg-transparent">
               <Link
-                href="/shop"
-                className="hover:text-muted-foreground !p-0 !text-base font-medium hover:bg-transparent"
+                href="#"
+                className="hover:text-muted-foreground !text-base font-medium"
               >
                 Shop
               </Link>
@@ -50,7 +50,7 @@ const ProductCarousel = async ({ title, slug }: Props) => {
           {products.map((product) => (
             <div
               key={product._id}
-              className="min-w-[280px] flex-shrink-0 snap-start sm:min-w-[320px] md:min-w-[350px]"
+              className="min-w-[220px] snap-start sm:min-w-[320px] md:min-w-[350px]"
             >
               <ProductCard product={product} />
             </div>

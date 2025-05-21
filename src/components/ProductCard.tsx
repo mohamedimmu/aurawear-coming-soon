@@ -29,6 +29,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <RichContentViewer
           content={product.description}
           className="text-muted-foreground"
+          paragraphClassName="text-sm"
         />
         <p className="text-base font-medium">
           MRP : {product.priceData?.formatted?.price}

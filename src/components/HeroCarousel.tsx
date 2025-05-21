@@ -51,7 +51,7 @@ export default function HeroCarousel() {
       ]}
     >
       <CarouselContent className="">
-        {carousel.map((item) => (
+        {carousel.map((item, index) => (
           <CarouselItem key={item.id}>
             <div className="relative h-screen min-h-[720px] w-full">
               <Image
@@ -59,9 +59,10 @@ export default function HeroCarousel() {
                 src={item.image}
                 fill
                 priority={item.id === 1}
-                className="object-cover object-center"
+                className={`object-cover object-center ${index === 3 ? "hidden md:block" : ""}`}
                 sizes="100vw"
                 quality={90}
+                unoptimized
               />
             </div>
           </CarouselItem>

@@ -98,10 +98,10 @@ const FormSection: React.FC<FormSectionProps> = ({
   status,
   onSubmit,
 }) => (
-  <div className="bg-primary flex min-h-full w-full items-center justify-stretch md:w-1/2">
+  <div className="flex min-h-full w-full items-center justify-stretch md:w-1/2">
     <Card className="bg-card h-full w-full justify-center p-8 md:p-12">
       <div className="flex justify-center">
-        <div className="bg-primary flex h-12 w-12 items-center justify-center rounded-full">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full">
           <Mail className="text-primary-foreground h-6 w-6" />
         </div>
       </div>
