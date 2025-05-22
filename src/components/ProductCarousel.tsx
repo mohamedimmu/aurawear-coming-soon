@@ -1,3 +1,5 @@
+// export const dynamic = "force-dynamic";
+
 import { queryProducts } from "@/app/wix-api/products";
 import CarouselSlider from "./CarouselSlider";
 import ProductCard from "./ProductCard";
@@ -5,6 +7,7 @@ import { getCollectionBySlug } from "@/app/wix-api/collections";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import CarouselButtons from "./CarouselButton";
+import { getWixServerClient } from "@/lib/wix-client-server";
 
 interface Props {
   title: string;
@@ -12,13 +15,14 @@ interface Props {
 }
 
 const ProductCarousel = async ({ title, slug }: Props) => {
-  const collection = await getCollectionBySlug(slug);
+  const wixClient = await getWixServerClient();
+  const collection = await getCollectionBySlug(wixClient, slug);
 
   if (!collection?._id) {
     return null;
   }
 
-  const queryResult = await queryProducts({
+  const queryResult = await queryProducts(wixClient, {
     collectionIds: collection._id,
   });
 
@@ -36,7 +40,7 @@ const ProductCarousel = async ({ title, slug }: Props) => {
         <div className="hidden items-center gap-4 md:flex">
           <Button variant="ghost" className="!p-0 hover:!bg-transparent">
             <Link
-              href="#"
+              href="/shop"
               className="hover:text-muted-foreground !text-base font-medium"
             >
               Shop
@@ -51,12 +55,13 @@ const ProductCarousel = async ({ title, slug }: Props) => {
             {/* -mr-[calc(100vw-100%)] */}
             <CarouselSlider id={carouselId}>
               {products.map((product) => (
-                <div
+                <Link
+                  href={`/products/${product.slug}`}
                   key={product._id}
                   className="min-w-[220px] snap-start sm:min-w-[320px] md:min-w-[390px]"
                 >
                   <ProductCard product={product} />
-                </div>
+                </Link>
               ))}
             </CarouselSlider>
           </div>
