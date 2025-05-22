@@ -123,7 +123,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-card-foreground font-inter;
+    @apply bg-background text-card-foreground font-inter min-w-[250px];
   }
 }
 

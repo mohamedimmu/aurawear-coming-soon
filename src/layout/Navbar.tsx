@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
+import React  from "react";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Logo from "@/components/Logo";
@@ -8,30 +6,37 @@ import Link from "next/link";
 import NavigationMenu from "@/components/NavigationMenu";
 import ActionMenu from "@/components/ActionMenu";
 import { cn } from "@/lib/utils";
+import { headers } from "next/headers";
 
-const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+const Navbar = async () => {
+  const headersList = await headers();
+  const pathname = headersList.get("x-current-path") || "";
+  const isHomePage = pathname === "";
+
+  // const [isScrolled, setIsScrolled] = useState(false);
 
   // Handle scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (window.scrollY > 10) {
+  //       setIsScrolled(true);
+  //     } else {
+  //       setIsScrolled(false);
+  //     }
+  //   };
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
 
   return (
     <header
       className={cn(
-        "absolute top-0 left-0 z-50 w-full transition-all duration-300",
-        isScrolled && ""
+        "z-50 w-full transition-all duration-300",
+        isHomePage
+          ? "absolute top-0 left-0"
+          : "bg-background/80 sticky top-0 backdrop-blur-md",
       )}
     >
       <div className="container-custom">
