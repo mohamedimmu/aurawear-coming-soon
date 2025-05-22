@@ -1,3 +1,5 @@
+// export const dynamic = "force-dynamic";
+
 import { getProductBySlug } from "@/app/wix-api/products";
 import { getWixServerClient } from "@/lib/wix-client-server";
 import { Metadata } from "next";
@@ -5,15 +7,14 @@ import { notFound } from "next/navigation";
 import React from "react";
 import ProductDetails from "./ProductDetails";
 
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
+type Params = Promise<{ slug: string }>;
 
 export async function generateMetadata({
-  params: { slug },
-}: PageProps): Promise<Metadata> {
+  params,
+}: {
+  params: Params;
+}): Promise<Metadata> {
+  const { slug } = await params;
   const wixClient = await getWixServerClient();
   const product = await getProductBySlug(wixClient, slug);
 
@@ -39,15 +40,16 @@ export async function generateMetadata({
   };
 }
 
-async function page({ params: { slug } }: PageProps) {
+async function ProductDetailPage({ params }: { params: Params }) {
+  const { slug } = await params;
   const wixClient = await getWixServerClient();
   const product = await getProductBySlug(wixClient, slug);
   if (!product?._id) notFound();
   return (
-    <div className="lg:container mx-auto px-4 lg:px-6 py-4">
+    <div className="mx-auto px-4 py-4 lg:container lg:px-6">
       <ProductDetails product={product} />
     </div>
   );
 }
 
-export default page;
+export default ProductDetailPage;

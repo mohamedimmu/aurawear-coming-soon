@@ -6,7 +6,7 @@ import { getWixClient } from "./wix-client-base";
 const getTokensFromCookie = (cookieName: string): Tokens | undefined => {
   try {
     const cookieValue = Cookies.get(cookieName);
-    return cookieValue ? JSON.parse(cookieValue) : undefined;
+    return cookieValue ? JSON.parse(cookieValue) : JSON.parse("{}");
   } catch (error) {
     console.error("Failed to parse Wix session cookie:", error);
     return undefined;

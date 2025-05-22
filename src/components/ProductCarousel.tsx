@@ -1,3 +1,5 @@
+// export const dynamic = "force-dynamic";
+
 import { queryProducts } from "@/app/wix-api/products";
 import CarouselSlider from "./CarouselSlider";
 import ProductCard from "./ProductCard";

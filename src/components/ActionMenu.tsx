@@ -1,3 +1,5 @@
+// export const dynamic = "force-dynamic";
+
 import React, { Suspense } from "react";
 import { Button } from "./ui/button";
 import { Search, ShoppingCart, User } from "lucide-react";
