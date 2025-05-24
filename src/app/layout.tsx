@@ -5,6 +5,7 @@ import { Toaster } from "sonner";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { env } from "@/env";
 import ThemeProvider from "@/lib/ThemeProvider";
+import ReactQueryProvider from "@/components/ReactQueryProvider";
 
 const grotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -44,15 +45,17 @@ export default function RootLayout({
         className={`${inter.variable} ${lora.variable} ${grotesk.variable} bg-background antialiased`}
       >
         <GoogleAnalytics gaId={env.MEASUREMENT_ID!} />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem={true}
-          disableTransitionOnChange
-        >
-          <div className="">{children}</div>
-          <Toaster />
-        </ThemeProvider>
+        <ReactQueryProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem={true}
+            disableTransitionOnChange
+          >
+            <div className="">{children}</div>
+            <Toaster />
+          </ThemeProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );

@@ -1,5 +1,5 @@
 import WixImage from "@/components/WixImage";
-import { cn } from "@/lib/utils";
+import { cn, getMediaUrls } from "@/lib/utils";
 import { products } from "@wix/stores";
 import { PlayIcon } from "lucide-react";
 import React, { useEffect, useState } from "react";
@@ -26,7 +26,7 @@ export default function ProductMedia({ media }: ProductMediaProps) {
         {/* Thumbnail */}
         {media.length > 1 && (
           <div
-            className="flex flex-row gap-4 lg:flex-col overflow-x-auto"
+            className="flex flex-row gap-4 overflow-x-auto lg:flex-col"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {media.map((mediaItem) => (
@@ -78,20 +78,7 @@ interface MediaPreviewProps {
 }
 
 function MediaPreview({ mediaItem, isSelected, onSelect }: MediaPreviewProps) {
-  const imageUrl = mediaItem.image?.url;
-
-  //eg: 11062b_e2fe3f2568f04c639727a838bce1d32cf002.jpg
-  const stillFrameMediaId = mediaItem.video?.stillFrameMediaId;
-
-  //eg: https://static.wixstatic.com/media/11062b_e2fe3f2568f04c639727a838bce1d32cf002.jpg/v1/fit/w_50,h_50,q_90/file.jpg
-  const thumbnailUrl = mediaItem.thumbnail?.url;
-
-  // video url
-  const resolvedThumbnailUrl =
-    stillFrameMediaId && thumbnailUrl
-      ? thumbnailUrl.split(stillFrameMediaId)[0] + stillFrameMediaId
-      : undefined;
-
+  const { imageUrl, resolvedThumbnailUrl } = getMediaUrls(mediaItem);
   if (!imageUrl && !resolvedThumbnailUrl) return null;
 
   return (

@@ -59,7 +59,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         </div>
 
         {/* Right column - Product Info */}
-        <div className="w-full space-y-6 lg:w-[40%]">
+        <div className="w-full space-y-9 lg:w-[40%]">
           {/* Product title and description */}
           <div>
             {/* Sustainable label */}
@@ -107,6 +107,12 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             inStock={inStock}
             product={product}
             selectedOptions={selectedOptions}
+            selectedVariant={selectedVariant}
+            media={
+              !!selectedOptionsMedia?.length
+                ? selectedOptionsMedia
+                : product.media?.items
+            }
             quantity={1}
           />
         </div>

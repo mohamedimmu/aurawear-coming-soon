@@ -14,7 +14,7 @@ export default function ProductPrice({
   if (!priceData) return null;
   const hasDiscount = priceData.discountedPrice !== priceData.price;
   return (
-    <div className="mb-12">
+    <div className="">
       {hasDiscount ? (
         <div className="flex flex-row gap-4 flex-wrap">
           <p className="text-xl font-bold">

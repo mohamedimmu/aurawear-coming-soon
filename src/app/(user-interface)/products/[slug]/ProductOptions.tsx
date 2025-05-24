@@ -15,10 +15,10 @@ export default function ProductOptions({
   setSelectedOptions,
 }: ProductOptionsProps) {
   return (
-    <div>
+    <div className="">
       {product.productOptions?.map((option) => (
-        <div key={option.name}>
-          <div className="mb-4 flex items-center justify-between">
+        <div key={option.name} className="mb-4">
+          <div className="mb-2 flex items-center justify-between">
             <h3 className="text-base font-medium">Select {option.name}</h3>
           </div>
           <div className="grid grid-cols-3 gap-2">
