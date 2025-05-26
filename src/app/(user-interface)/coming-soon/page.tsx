@@ -1,5 +1,5 @@
 import DropSection from "@/components/DropSection";
-import ContactForm from "@/components/ContactForm";
+import ContactForm from "@/components/ContactFormPages";
 import HeroSection from "@/components/HeroSection";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
