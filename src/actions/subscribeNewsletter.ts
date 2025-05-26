@@ -1,6 +1,6 @@
 "use server";
 
-import { wixClientServer } from "@/lib/wixClientServer";
+import { wixClientServer } from "@/lib/wix-client-server";
 import { CountryCode } from "libphonenumber-js";
 
 interface Subscriber {
@@ -83,7 +83,7 @@ async function createContact(formData: Subscriber) {
       },
       {
         allowDuplicates: false,
-      }
+      },
     );
     return { success: true };
   } catch (e) {

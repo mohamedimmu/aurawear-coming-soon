@@ -26,31 +26,31 @@ const DropSection = () => {
   ];
 
   return (
-    <section className="w-full py-6 md:py-12 px-6 md:px-12">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col items-center text-center mb-12 space-y-2">
-          <div className="flex flex-row gap-4 items-center justify-center">
-            <GalleryHorizontal className="w-12 h-12 text-card-foreground/80" />
-            <h2 className="font-grotesk text-2xl xxs:text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-black text-black tracking-tight text-center leading-[1.1] md:leading-[1.2] animate-hero-fade-in space-y-1 uppercase">
+    <section className="w-full px-6 py-6 md:px-12 md:py-12">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-12 flex flex-col items-center space-y-2 text-center">
+          <div className="flex flex-row items-center justify-center gap-4">
+            <GalleryHorizontal className="text-card-foreground/80 h-12 w-12" />
+            <h2 className="font-lora xxs:text-3xl xs:text-4xl animate-hero-fade-in space-y-1 text-center text-2xl leading-[1.1] font-black tracking-tight text-black uppercase sm:text-5xl md:text-6xl md:leading-[1.2]">
               Drop 1: The Origin
             </h2>
           </div>
           <div className="flex flex-row items-center gap-4 text-center">
-            <div className="relative w-8 h-8">
+            <div className="relative h-8 w-8">
               {/* Animated outer ring */}
-              <div className="absolute inset-0 bg-primary animate-ping rounded-full"></div>
+              <div className="bg-primary absolute inset-0 animate-ping rounded-full"></div>
 
               {/* Stable inner dot */}
-              <div className="absolute inset-0 m-auto w-4 h-4 bg-primary/80 z-10 rounded-full"></div>
+              <div className="bg-primary/80 absolute inset-0 z-10 m-auto h-4 w-4 rounded-full"></div>
             </div>
 
-            <p className="text-sm xs:text-base md:text-lg text-black/80 leading-relaxed font-bold">
+            <p className="xs:text-base text-sm leading-relaxed font-bold text-black/80 md:text-lg">
               Launching this May
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 lg:grid-cols-3">
           {images.map((src, index) => (
             <div
               key={`drop-image-${index}`}
@@ -60,7 +60,7 @@ const DropSection = () => {
                   : ""
               }`}
             >
-              <div className="aspect-[1.41/1] relative overflow-hidden bg-peach/20">
+              <div className="bg-peach/20 relative aspect-[1.41/1] overflow-hidden">
                 <Image
                   src={src}
                   alt={`Aurawear Collection Preview ${index + 1}`}
@@ -70,7 +70,7 @@ const DropSection = () => {
                   quality={95}
                   // priority={index < 4}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100" />
               </div>
             </div>
           ))}
