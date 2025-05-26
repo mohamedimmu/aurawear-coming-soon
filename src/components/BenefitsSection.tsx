@@ -12,34 +12,34 @@ interface BenefitItem {
 const benefits: BenefitItem[] = [
   {
     icon: CircleCheck,
-    title: "Our Mission",
+    title: "Crafted with Quality",
     description:
-      "We're not just fashion — we're driven by passion. Made for every shape, built to uplift with action.",
+      "From premium cottons to high-performance stretch fabrics, we choose only what elevates the experience of wearing it.",
   },
   {
     icon: Info,
-    title: "Transparency",
+    title: "Safe and Easy Checkout",
     description:
-      "What you see is what you get — no fine print, no regret. Clear from day one, and clearer yet.",
+      "Multiple payment options. Instant confirmation. 100% secure checkout.",
   },
   {
     icon: CircleCheck,
-    title: "Quality",
+    title: "Pan-India Shipping",
     description:
-      "No tears, no fears — our gear goes the distance, year after year. Made to last, through sweat and cheers.",
+      "We ship across India with tracking on every order. You'll receive updates from the moment it's packed to the time it reaches you.",
   },
   {
     icon: Percent,
-    title: "Heritage",
+    title: "Need Help?",
     description:
-      "From roots that run deep to dreams we now keep — we blend the past with every leap.",
+      "From product queries to post-order updates, we'll get back to you fast with real support.",
   },
 ];
 
 export default function BenefitsSection() {
   return (
     <section className="container mx-auto px-4 py-8">
-      <div className="relative mb-16 aspect-[16/9] w-full overflow-hidden bg-muted">
+      <div className="bg-muted relative mb-16 aspect-[16/9] w-full overflow-hidden">
         <Image
           unoptimized
           quality={80}

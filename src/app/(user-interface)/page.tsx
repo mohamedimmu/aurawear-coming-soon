@@ -8,7 +8,7 @@ import { Suspense } from "react";
 import ComingSoonSection from "@/components/ComingSoonSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import Newsletter from "@/components/Newsletter";
-import PremiumActiveWear from "@/components/PremiumActiveWear";
+// import PremiumActiveWear from "@/components/PremiumActiveWear";
 
 export const metadata: Metadata = {
   title: "Coming Soon",
@@ -22,7 +22,7 @@ export default function RootLayout() {
         <ProductCarousel title="Featured Product" slug="featured-products" />
       </Suspense>
       <ComingSoonSection />
-      <PremiumActiveWear />
+      {/* <PremiumActiveWear /> */}
       <BenefitsSection />
       <Newsletter />
       {/* <HeroSection />

@@ -1,11 +1,10 @@
+"use client";
+
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { CreditCard } from "lucide-react";
+import { CreditCard, Loader2 } from "lucide-react";
 import { products } from "@wix/stores";
-import { addToCart } from "@/app/wix-api/cart";
-import { wixBrowserClient } from "@/lib/wix-client-browser";
-import { toast } from "sonner";
-import CartNotification from "@/components/CartNotification";
+import { useAddItemToCart } from "@/app/hooks/cart";
 
 interface ProductActionButtonProps {
   product: products.Product;
@@ -27,28 +26,16 @@ export default function ProductActionButton({
 }: ProductActionButtonProps) {
   const mediaItem = media?.[0];
   const priceData = selectedVariant?.variant?.priceData || product.priceData;
+  const { mutate, isPending } = useAddItemToCart();
+
   const handleCart = () => {
-    addToCart(wixBrowserClient(), {
+    mutate({
       product,
       selectedOptions,
       quantity,
+      mediaItem,
+      priceData,
     });
-    toast.custom(
-      (addToCartModalClose) => (
-        <CartNotification
-          product={product}
-          selectedOptions={selectedOptions}
-          addToCartModalClose={addToCartModalClose}
-          mediaItem={mediaItem}
-          priceData={priceData}
-        />
-      ),
-      {
-        position: "top-right",
-        duration: 5000,
-        dismissible: true,
-      },
-    );
   };
   return (
     <>
@@ -59,10 +46,17 @@ export default function ProductActionButton({
           {...props}
           variant="default"
           size={"lg"}
-          disabled={!inStock}
+          disabled={!inStock || isPending}
           className="bg-primary text-primary-foreground w-full cursor-pointer py-6 hover:opacity-95"
         >
-          Add to Bag
+          {isPending ? (
+            <>
+              <Loader2 className="animate-spin" />
+              Add to cart
+            </>
+          ) : (
+            "Add to cart"
+          )}
         </Button>
 
         {/* Favorite button */}

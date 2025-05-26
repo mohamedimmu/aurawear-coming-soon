@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Trash, Plus, Minus, Heart } from "lucide-react";
+import { Trash, Plus, Minus, Heart, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import Image from "next/image";
 
@@ -48,9 +48,9 @@ const CartPage = () => {
     toast.success("Item removed from bag");
   };
 
-  const handleAddToFavorites = (id: string) => {
+  const handleAddToFavorites = () => {
     toast.success("Item added to favorites");
-    console.log(id);
+
   };
 
   // Calculate totals
@@ -60,6 +60,16 @@ const CartPage = () => {
   );
   const deliveryFee = 1250.0;
   const total = subtotal + deliveryFee;
+
+  if (initialCartItems)
+    return (
+      <>
+        <div className="flex h-screen items-center justify-center">
+          <p className="text-2xl font-medium">Checkout</p>
+          <Loader2 className="h-6 w-6" />
+        </div>
+      </>
+    );
 
   return (
     <div className="container mx-auto max-w-7xl px-4 py-8">
@@ -138,7 +148,7 @@ const CartPage = () => {
                       </button>
 
                       <button
-                        onClick={() => handleAddToFavorites(item.id)}
+                        onClick={() => handleAddToFavorites()}
                         className="flex h-8 w-8 items-center justify-center rounded-full border"
                         aria-label="Add to favorites"
                       >

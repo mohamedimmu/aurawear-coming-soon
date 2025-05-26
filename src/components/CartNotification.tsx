@@ -7,7 +7,6 @@ import WixImage from "./WixImage";
 import { getMediaUrls } from "@/lib/utils";
 import RichContentViewer from "./RichContentViewer";
 import { CircleCheck, X } from "lucide-react";
-import { useCart } from "@/app/hooks/cart";
 
 interface CartNotificationProps {
   product: products.Product;
@@ -15,6 +14,7 @@ interface CartNotificationProps {
   addToCartModalClose?: string | number;
   mediaItem: products.MediaItem | undefined;
   priceData: products.PriceData | undefined;
+  cartQuantity: number;
 }
 
 export default function CartNotification({
@@ -23,18 +23,15 @@ export default function CartNotification({
   addToCartModalClose,
   mediaItem,
   priceData,
+  cartQuantity,
 }: CartNotificationProps) {
   const { imageUrl, resolvedThumbnailUrl } = mediaItem
     ? getMediaUrls(mediaItem)
     : { imageUrl: undefined, resolvedThumbnailUrl: undefined };
   const hasDiscount = priceData?.discountedPrice !== priceData?.price;
 
-  const cartQuery = useCart();
-  const totalQuantity =
-    cartQuery.data?.lineItems?.reduce(
-      (acc, item) => acc + (item.quantity || 0),
-      0,
-    ) || 0;
+  console.log(cartQuantity);
+  if (!cartQuantity) return null;
 
   return (
     <>
@@ -127,7 +124,7 @@ export default function CartNotification({
             }}
             className="border-border h-12 w-full border px-4 py-3 text-center"
           >
-            <Link href="/cart"> View Bag ({totalQuantity})</Link>
+            <Link href="/cart"> View Bag ({cartQuantity})</Link>
           </Button>
           <Button
             variant="default"

@@ -35,7 +35,7 @@ const Newsletter: React.FC<NewsletterProps> = ({
 
     try {
       // Replace with your actual API call
-      await subscribeToNewsletter(email);
+      await subscribeToNewsletter();
       setStatus("success");
       setEmail("");
     } catch {
@@ -62,10 +62,10 @@ const Newsletter: React.FC<NewsletterProps> = ({
   );
 };
 
-const ImageSection: React.FC<{ imageSrc: string | StaticImageData; imageAlt: string }> = ({
-  imageSrc,
-  imageAlt,
-}) => (
+const ImageSection: React.FC<{
+  imageSrc: string | StaticImageData;
+  imageAlt: string;
+}> = ({ imageSrc, imageAlt }) => (
   <div className="bg-muted aspect-square w-full md:w-1/2">
     <div className="relative flex h-full w-full items-center justify-center">
       <Image
@@ -146,10 +146,9 @@ const FormSection: React.FC<FormSectionProps> = ({
 );
 
 // Add this function in your API utilities file
-const subscribeToNewsletter = async (email: string): Promise<void> => {
+const subscribeToNewsletter = async (): Promise<void> => {
   // Implement your newsletter subscription logic here
   await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulated API call
-  console.log(email);
 };
 
 export default Newsletter;

@@ -1,28 +1,17 @@
-// export const dynamic = "force-dynamic";
-
 import React, { Suspense } from "react";
 import { Button } from "./ui/button";
 import { Search, ShoppingCart, User } from "lucide-react";
+import { CartBadge } from "./CartBadge";
 import { getCart } from "@/app/wix-api/cart";
-import { Badge } from "./ui/badge";
 import { getWixServerClient } from "@/lib/wix-client-server";
 
-export async function CartBadge() {
+export default async function ActionMenu() {
+
   const wixClient = await getWixServerClient();
-  const cart = await getCart(wixClient);
-  const totalQuantity =
-    cart?.lineItems.reduce((acc, item) => acc + (item.quantity || 0), 0) || 0;
+  const [cart] = await Promise.all([
+    getCart(wixClient),
+  ]);
 
-  if (totalQuantity === 0) return null;
-
-  return (
-    <Badge className="absolute top-0.5 -right-0.5 h-4 w-4 rounded-full px-1">
-      {totalQuantity}
-    </Badge>
-  );
-}
-
-function ActionMenu() {
   return (
     <div className="flex items-center space-x-2">
       <Button
@@ -41,7 +30,7 @@ function ActionMenu() {
         className="relative cursor-pointer hover:!bg-transparent"
       >
         <Suspense fallback={null}>
-          <CartBadge />
+          <CartBadge initialData={cart} />
         </Suspense>
         <ShoppingCart className="navbar-icon" />
       </Button>
@@ -56,5 +45,3 @@ function ActionMenu() {
     </div>
   );
 }
-
-export default ActionMenu;
