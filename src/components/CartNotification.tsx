@@ -133,7 +133,7 @@ export default function CartNotification({
             }}
             className="bg-primary text-primary-foreground !h-12 w-full px-4 py-3 text-center"
           >
-            <Link href="/checkout">Checkout</Link>
+            <Link href="/cart">Checkout</Link>
           </Button>
         </div>
       </div>

@@ -48,9 +48,10 @@ export default function RootLayout({
         <ReactQueryProvider>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
-            enableSystem={true}
-            disableTransitionOnChange
+            defaultTheme="light"
+            // defaultTheme="system"
+            // enableSystem={true}
+            // disableTransitionOnChange
           >
             <div className="">{children}</div>
             <Toaster richColors />

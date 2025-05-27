@@ -11,37 +11,37 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "./ui/button";
-import { Instagram, Mail, Menu, Moon, Sun, X } from "lucide-react";
+import { Instagram, Mail, Menu, X } from "lucide-react";
 import { Label } from "./ui/label";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { useTheme } from "next-themes";
+// import { useTheme } from "next-themes";
 
 const navLinks = [
   {
     name: "Home",
     href: "/",
   },
-  {
-    name: "Shop",
-    href: "/shop",
-  },
-  {
-    name: "Collections",
-    href: "/collections",
-  },
-  {
-    name: "Contact",
-    href: "/contact",
-  },
+  // {
+  //   name: "Shop",
+  //   href: "/shop",
+  // },
+  // {
+  //   name: "Collections",
+  //   href: "/collections",
+  // },
+  // {
+  //   name: "Contact",
+  //   href: "/contact",
+  // },
 ];
 
 export default function NavigationMenu() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [shouldAnimateIcon, setShouldAnimateIcon] = useState(false);
   const [mount, setMount] = useState(false);
-  const { systemTheme, theme, setTheme } = useTheme();
-  const currentTheme = theme === "system" ? systemTheme : theme;
+  // const { systemTheme, theme, setTheme } = useTheme();
+  // const currentTheme = theme === "system" ? systemTheme : theme;
 
   useEffect(() => {
     setMount(true);
@@ -88,7 +88,7 @@ export default function NavigationMenu() {
               </SheetClose>
 
               <div className="flex items-center gap-4">
-                <Button
+                {/* <Button
                   variant="ghost"
                   size="icon"
                   className="cursor-pointer hover:!bg-transparent"
@@ -106,13 +106,13 @@ export default function NavigationMenu() {
                   ) : (
                     <Moon className="text-foreground h-6 w-6" />
                   )}
-                </Button>
-                <Link href="/" className="underline-link">
+                </Button> */}
+                {/* <Link href="/" className="underline-link">
                   Search
-                </Link>
-                <Link href="/" className="underline-link">
+                </Link> */}
+                {/* <Link href="/" className="underline-link">
                   Login
-                </Link>
+                </Link> */}
               </div>
             </div>
           </SheetHeader>
