@@ -3,8 +3,8 @@ import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Logo from "@/components/Logo";
 import Link from "next/link";
-import NavigationMenu from "@/components/NavigationMenu";
-import ActionMenu from "@/components/ActionMenu";
+// import NavigationMenu from "@/components/NavigationMenu";
+// import ActionMenu from "@/components/ActionMenu";
 import { cn } from "@/lib/utils";
 import { headers } from "next/headers";
 
@@ -43,7 +43,7 @@ const Navbar = async () => {
         <div className="relative flex h-20 items-center justify-between gap-8">
           {/* Left side - Menu */}
           <div className="flex items-center">
-            <NavigationMenu />
+            {/* <NavigationMenu /> */}
           </div>
 
           {/* Center - Logo */}
@@ -56,7 +56,7 @@ const Navbar = async () => {
           </Link>
 
           {/* Right side - Icons */}
-          <ActionMenu />
+          {/* <ActionMenu /> */}
         </div>
       </div>
 

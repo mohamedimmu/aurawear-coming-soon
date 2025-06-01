@@ -34,8 +34,21 @@ export async function middleware(request: NextRequest) {
 
   res.cookies.set(WIX_SESSION_COOKIE, JSON.stringify(sessionTokens), {
     maxAge: 60 * 60 * 24 * 14,
+    //Need to fix it
     secure: process.env.NODE_ENV === "production",
   });
+
+  const websiteLauched = false;
+  if (
+    !websiteLauched &&
+    (request.nextUrl.pathname === "/" ||
+      request.nextUrl.pathname === "/products" ||
+      request.nextUrl.pathname === "/contact" ||
+      request.nextUrl.pathname === "/shop" ||
+      request.nextUrl.pathname === "/cart")
+  ) {
+    return NextResponse.redirect(new URL("/coming-soon", request.url));
+  }
 
   return res;
 }

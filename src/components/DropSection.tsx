@@ -45,7 +45,7 @@ const DropSection = () => {
             </div>
 
             <p className="xs:text-base text-sm leading-relaxed font-bold text-black/80 md:text-lg">
-              Launching this May
+              Launching this June
             </p>
           </div>
         </div>
