@@ -12,6 +12,9 @@ import { redirects } from "@wix/redirects";
 import { reviews } from "@wix/reviews";
 import { createClient, OAuthStrategy, Tokens } from "@wix/sdk";
 import { collections, products } from "@wix/stores";
+import { contacts } from "@wix/crm";
+import { items } from "@wix/data";
+import { emailSubscriptions } from "@wix/email-subscriptions";
 
 export function getWixClient(tokens: Tokens | undefined) {
   return createClient({
@@ -27,6 +30,9 @@ export function getWixClient(tokens: Tokens | undefined) {
       reviews,
       members,
       files,
+      contacts,
+      items,
+      emailSubscriptions,
     },
     auth: OAuthStrategy({
       clientId: env.NEXT_PUBLIC_CLIENT_ID,

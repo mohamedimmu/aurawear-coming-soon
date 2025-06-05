@@ -8,8 +8,9 @@ const wixClient = createClient({
 });
 
 export async function middleware(request: NextRequest) {
-  const headers = new Headers(request.headers);
-  headers.set("x-current-path", request.nextUrl.pathname);
+  // To get the pathname in server component
+  // const headers = new Headers(request.headers);
+  // headers.set("x-current-path", request.nextUrl.pathname);
 
   const cookies = request.cookies;
   const sessionCookie = cookies.get(WIX_SESSION_COOKIE);
@@ -28,29 +29,32 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+  // This cookies only availabe on the server side for the current request
   request.cookies.set(WIX_SESSION_COOKIE, JSON.stringify(sessionTokens));
 
-  const res = NextResponse.next({ request, headers });
+  const response = NextResponse.next({ request });
 
-  res.cookies.set(WIX_SESSION_COOKIE, JSON.stringify(sessionTokens), {
+  // Modifies the response that goes back to the client
+  response.cookies.set(WIX_SESSION_COOKIE, JSON.stringify(sessionTokens), {
     maxAge: 60 * 60 * 24 * 14,
+    secure: true,
     //Need to fix it
-    secure: process.env.NODE_ENV === "production",
+    // secure: process.env.NODE_ENV === "production",
   });
 
-  const websiteLauched = false;
-  if (
-    !websiteLauched &&
-    (request.nextUrl.pathname === "/" ||
-      request.nextUrl.pathname === "/products" ||
-      request.nextUrl.pathname === "/contact" ||
-      request.nextUrl.pathname === "/shop" ||
-      request.nextUrl.pathname === "/cart")
-  ) {
-    return NextResponse.redirect(new URL("/coming-soon", request.url));
-  }
+  // const websiteLauched = true;
+  // if (
+  //   !websiteLauched &&
+  //   (request.nextUrl.pathname === "/" ||
+  //     request.nextUrl.pathname === "/products" ||
+  //     request.nextUrl.pathname === "/contact" ||
+  //     request.nextUrl.pathname === "/shop" ||
+  //     request.nextUrl.pathname === "/cart")
+  // ) {
+  //   return NextResponse.redirect(new URL("/coming-soon", request.url));
+  // }
 
-  return res;
+  return response;
 }
 
 export const config = {

@@ -54,7 +54,7 @@ export default function RootLayout({
             // disableTransitionOnChange
           >
             <div className="">{children}</div>
-            <Toaster richColors />
+            <Toaster richColors position="top-right" />
           </ThemeProvider>
         </ReactQueryProvider>
       </body>

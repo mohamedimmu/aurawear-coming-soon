@@ -35,7 +35,7 @@ export default function CartNotification({
 
   return (
     <>
-      <div className="bg-background w-400px] max-w-md p-4 shadow-md">
+      <div className="bg-background max-w-md p-4 shadow-md">
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <CircleCheck className="h-6 w-6 text-green-500" />
@@ -47,7 +47,7 @@ export default function CartNotification({
             onClick={() => {
               toast.dismiss(addToCartModalClose);
             }}
-            className=""
+            className="cursor-pointer"
           >
             <X
               className="text-muted-foreground !h-6 !w-6"
