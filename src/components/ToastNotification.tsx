@@ -23,14 +23,6 @@ const defaultIcons: Record<Variant, React.ReactNode> = {
   info: <Info className="text-blue-500" />,
 };
 
-// Style per variant
-const variantStyleMap: Record<Variant, string> = {
-  success: "border-green-500 text-green-900",
-  error: "border-red-500 text-red-900",
-  warning: "border-yellow-500 text-yellow-900",
-  info: "border-blue-500 text-blue-900",
-};
-
 export default function ToastNotification({
   modalClose,
   icon,
@@ -40,11 +32,11 @@ export default function ToastNotification({
 }: ToastNotificationProps) {
   return (
     <div
-      className={`bg-background relative flex max-w-md items-center justify-center gap-4 p-4 shadow-md ${variantStyleMap[variant]}`}
+      className={`bg-background relative flex max-w-md items-center justify-center gap-4 p-4 shadow-md`}
     >
       <div className="text-xl">{icon ?? defaultIcons[variant]}</div>
       <div className="flex-1">
-        <p className="font-semibold">{title}</p>
+        <p className="">{title}</p>
         {description && (
           <p className="text-muted-foreground text-sm">{description}</p>
         )}

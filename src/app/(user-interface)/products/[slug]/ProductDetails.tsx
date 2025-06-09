@@ -15,8 +15,6 @@ interface ProductDetailsProps {
 }
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
-  // const [quantity, setQuantity] = useState(1);
-
   const [selectedOptions, setSelectedOptions] = useState<
     Record<string, string>
   >(
@@ -80,18 +78,18 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
           {/* Stock Details */}
           {availableQuantity && inStock ? (
-            availableQuantity < 3 && (
+            availableQuantity <= 3 && (
               <div className="flex gap-2">
-                <Timer className="size-5 text-red-600" />
-                <span className="text-red-600">
+                <Timer className="size-5 text-orange-500" />
+                <span className="text-orange-500">
                   Just a few left. Order soon.
                 </span>
               </div>
             )
           ) : (
             <div className="flex gap-2">
-              <Package className="size-5 text-red-600" />
-              <span className="text-red-600">Out of stock.</span>
+              <Package className="size-5 text-red-500" />
+              <span className="text-red-500">Out of stock.</span>
             </div>
           )}
 

@@ -42,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${lora.variable} ${grotesk.variable} bg-background antialiased`}
+        className={`${inter.variable} ${lora.variable} ${grotesk.variable} bg-background relative antialiased`}
       >
         <GoogleAnalytics gaId={env.MEASUREMENT_ID!} />
         <ReactQueryProvider>
@@ -53,7 +53,7 @@ export default function RootLayout({
             // enableSystem={true}
             // disableTransitionOnChange
           >
-            <div className="">{children}</div>
+            {children}
             <Toaster richColors position="top-right" />
           </ThemeProvider>
         </ReactQueryProvider>

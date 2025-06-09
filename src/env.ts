@@ -8,9 +8,10 @@ export const env = createEnv({
     ACCOUNT_ID: z.string().min(1),
     MEASUREMENT_ID: z.string().min(1),
     VERCEL_URL: z.string(),
+    VERCEL_ENV: z.string(),
   },
   client: {
-    NEXT_PUBLIC_CLIENT_ID: z.string().min(1),
+  NEXT_PUBLIC_CLIENT_ID: z.string().min(1),
   },
   experimental__runtimeEnv: {
     NEXT_PUBLIC_CLIENT_ID: process.env.NEXT_PUBLIC_CLIENT_ID,

@@ -2,6 +2,7 @@ import React from "react";
 import WixImage from "./WixImage";
 import { products } from "@wix/stores";
 import RichContentViewer from "./RichContentViewer";
+import Link from "next/link";
 
 interface ProductCardProps {
   product: products.Product;
@@ -11,11 +12,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const mainImage = product.media?.mainMedia?.image;
 
   return (
-    <div
-      className="flex w-full cursor-pointer flex-col"
-      // onClick={handleCardClick}
+    <Link
+      href={`/products/${product.slug}`}
+      className="flex cursor-pointer flex-col"
     >
-      <div className="mb-4 aspect-square w-full bg-muted">
+      <div className="bg-muted mb-4 flex aspect-square max-w-96 items-center justify-center">
         <WixImage
           mediaIdentifier={mainImage?.url}
           alt={mainImage?.altText}
@@ -35,7 +36,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           MRP : {product.priceData?.formatted?.price}
         </p>
       </div>
-    </div>
+    </Link>
   );
 };
 

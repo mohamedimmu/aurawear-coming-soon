@@ -80,3 +80,11 @@ export function resolveVideoThumbnail(
   if (!stillFrameMediaId || !thumbnailUrl) return undefined;
   return thumbnailUrl.split(stillFrameMediaId)[0] + stillFrameMediaId;
 }
+
+export function formatINRCurrency(amount: number): string {
+  return new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    minimumFractionDigits: 2,
+  }).format(amount);
+}

@@ -134,7 +134,7 @@
   --animate-hero-fade-in: hero-fade-in 0.7s
     cubic-bezier(0.66, -0.07, 0.54, 1.29) 0.1s both;
 
-  --breakpoint-xxs: 24.375rem; /* 320px */
+  --breakpoint-xxs: 24.375rem; /* 390px */
   --breakpoint-xs: 30rem; /* 480px */
   --color-navbar-icon-dark: oklch(0.141 0.005 285.823);
   --color-foreground-dark: oklch(0.141 0.005 285.823);
@@ -160,10 +160,14 @@
     @apply mx-auto px-4 md:px-6 lg:px-8;
   }
   .navbar-icon {
-    @apply text-navbar-icon-dark dark:text-navbar-icon-dark !h-5 !w-5;
+    @apply text-navbar-icon-dark dark:text-navbar-icon-dark !h-6 !w-6;
   }
 
   .underline-link {
     @apply after:bg-primary relative inline-block after:absolute after:bottom-0 after:left-0 after:block after:h-[2px] after:w-0 after:transition-all after:duration-300 hover:after:w-full;
+  }
+
+  .custom-tooltip-arrow-color svg {
+    @apply fill-muted bg-muted;
   }
 }

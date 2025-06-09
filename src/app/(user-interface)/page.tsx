@@ -3,8 +3,8 @@
 // import HeroSection from "@/components/HeroSection";
 import { Metadata } from "next";
 // import HeroCarousel from "@/components/HeroCarousel";
-// import ProductCarousel from "@/components/ProductCarousel";
-// import { Suspense } from "react";
+import ProductCarousel from "@/components/ProductCarousel";
+import { Suspense } from "react";
 // import ComingSoonSection from "@/components/ComingSoonSection";
 // import BenefitsSection from "@/components/BenefitsSection";
 // import Newsletter from "@/components/Newsletter";
@@ -17,11 +17,11 @@ export const metadata: Metadata = {
 export default function RootLayout() {
   return (
     <div className="space-y-8 md:space-y-12">
-      Home page
-      {/* <HeroCarousel />
       <Suspense fallback={<div>Loading...</div>}>
         <ProductCarousel title="Featured Product" slug="featured-products" />
       </Suspense>
+      {/* <HeroCarousel />
+     
       <ComingSoonSection /> */}
       {/* <PremiumActiveWear /> */}
       {/* <BenefitsSection /> */}

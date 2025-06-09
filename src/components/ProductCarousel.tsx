@@ -34,11 +34,16 @@ const ProductCarousel = async ({ title, slug }: Props) => {
   const carouselId = `carousel-${slug}`;
 
   return (
-    <div className="w-full py-8">
+    <div className="container mx-auto w-full px-4 py-8">
       <div className="mb-6 flex items-center justify-between px-6 md:px-8 lg:px-12">
-        <h2 className="font-lora text-2xl font-bold">{title}</h2>
-        <div className="hidden items-center gap-4 md:flex">
-          <Button variant="ghost" className="!p-0 hover:!bg-transparent">
+        <h2 className="font-inter xs:text-2xl text-xl font-semibold">
+          {title}
+        </h2>
+        <div className="xxs:flex hidden items-center gap-4">
+          <Button
+            variant="ghost"
+            className="hidden !p-0 hover:!bg-transparent md:block"
+          >
             <Link
               href="/shop"
               className="hover:text-muted-foreground !text-base font-medium"
@@ -55,13 +60,12 @@ const ProductCarousel = async ({ title, slug }: Props) => {
             {/* -mr-[calc(100vw-100%)] */}
             <CarouselSlider id={carouselId}>
               {products.map((product) => (
-                <Link
-                  href={`/products/${product.slug}`}
+                <div
                   key={product._id}
                   className="min-w-[220px] snap-start sm:min-w-[320px] md:min-w-[390px]"
                 >
                   <ProductCard product={product} />
-                </Link>
+                </div>
               ))}
             </CarouselSlider>
           </div>

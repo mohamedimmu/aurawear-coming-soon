@@ -1,4 +1,4 @@
-// import Navbar from "@/layout/Navbar";
+import Navbar from "@/layout/Navbar";
 import Footer from "@/layout/Footer";
 
 export default function RootLayout({
@@ -7,10 +7,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>
-      {/* <Navbar /> */}
-      <main>{children}</main>
+    <>
+      <Navbar />
+      <main className="pt-24">{children}</main>
       <Footer />
-    </div>
+    </>
   );
 }

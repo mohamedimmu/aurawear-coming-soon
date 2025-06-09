@@ -30,7 +30,6 @@ export default function CartNotification({
     : { imageUrl: undefined, resolvedThumbnailUrl: undefined };
   const hasDiscount = priceData?.discountedPrice !== priceData?.price;
 
-  console.log(cartQuantity);
   if (!cartQuantity) return null;
 
   return (
@@ -124,7 +123,7 @@ export default function CartNotification({
             }}
             className="border-border h-12 w-full border px-4 py-3 text-center"
           >
-            <Link href="/cart"> View Bag ({cartQuantity})</Link>
+            <Link href="/cart"> View Cart ({cartQuantity})</Link>
           </Button>
           <Button
             variant="default"

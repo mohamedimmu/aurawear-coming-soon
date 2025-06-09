@@ -1,6 +1,6 @@
 "use server";
 
-import { wixClientServer } from "@/lib/wix-client-server";
+import { getWixAdminClient } from "@/lib/wix-client-admin";
 import { CountryCode } from "libphonenumber-js";
 
 interface Subscriber {
@@ -36,12 +36,15 @@ interface ContactError {
   };
 }
 
+// Admin wix client
+const wixClientAdmin = getWixAdminClient();
+
 /**
  * Saves subscriber data to the database collection
  */
 async function saveFormData(formData: Subscriber) {
   try {
-    const savedItem = await wixClientServer.items.save("FormData", {
+    const savedItem = await wixClientAdmin.items.save("FormData", {
       ...formData,
     });
     return savedItem;
@@ -57,7 +60,7 @@ async function saveFormData(formData: Subscriber) {
 async function createContact(formData: Subscriber) {
   const { firstName, lastName, email, phone, countryCode } = formData;
   try {
-    await wixClientServer.contacts.createContact(
+    await wixClientAdmin.contacts.createContact(
       {
         name: {
           first: firstName,

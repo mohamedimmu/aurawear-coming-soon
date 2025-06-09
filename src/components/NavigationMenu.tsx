@@ -15,7 +15,6 @@ import { Instagram, Mail, Menu, X } from "lucide-react";
 import { Label } from "./ui/label";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
 // import { useTheme } from "next-themes";
 
 const navLinks = [
@@ -43,8 +42,7 @@ export default function NavigationMenu() {
   const [mount, setMount] = useState(false);
   // const { systemTheme, theme, setTheme } = useTheme();
   // const currentTheme = theme === "system" ? systemTheme : theme;
-  const pathname = usePathname();
-  console.log(pathname);
+
 
   useEffect(() => {
     setMount(true);
@@ -127,7 +125,7 @@ export default function NavigationMenu() {
                   key={index}
                   htmlFor="name"
                   className="text-center text-2xl md:text-4xl"
-                  onClick={() => pathname === link.href && setIsSheetOpen(false)}
+                  // onClick={() => pathname === link.href && setIsSheetOpen(false)}
                 >
                   <Link href={link.href} className="underline-link">
                     {" "}

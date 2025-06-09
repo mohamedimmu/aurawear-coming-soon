@@ -2,9 +2,10 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { CreditCard, Loader2 } from "lucide-react";
+import { CreditCard, Loader2, ShoppingCartIcon } from "lucide-react";
 import { products } from "@wix/stores";
 import { useAddItemToCart } from "@/app/hooks/cart";
+import { useQuickBuy } from "@/app/hooks/checkout";
 
 interface ProductActionButtonProps {
   product: products.Product;
@@ -27,6 +28,7 @@ export default function ProductActionButton({
   const mediaItem = media?.[0];
   const priceData = selectedVariant?.variant?.priceData || product.priceData;
   const { mutate, isPending } = useAddItemToCart();
+  const { startCheckoutFlow, pending: isBuyNowPending } = useQuickBuy();
 
   const handleCart = () => {
     mutate({
@@ -39,7 +41,6 @@ export default function ProductActionButton({
   };
   return (
     <>
-      {/* <div className="fixed inset-0 z-60 bg-black/50 backdrop-blur-sm" /> */}
       <div>
         <Button
           onClick={handleCart}
@@ -55,18 +56,32 @@ export default function ProductActionButton({
               Add to cart
             </>
           ) : (
-            "Add to cart"
+            <>
+              Add to cart <ShoppingCartIcon className="ml-2" />
+            </>
           )}
         </Button>
 
-        {/* Favorite button */}
+        {/* Buy now button */}
         <Button
           disabled={!inStock}
           variant="outline"
           size={"lg"}
           className="border-border mt-4 w-full cursor-pointer"
+          onClick={() =>
+            startCheckoutFlow({ product, quantity, selectedOptions })
+          }
         >
-          Buy Now <CreditCard className="ml-2" />
+          {isBuyNowPending ? (
+            <>
+              <Loader2 className="animate-spin" />
+              Buy Now
+            </>
+          ) : (
+            <>
+              Buy Now <CreditCard className="ml-2" />
+            </>
+          )}
         </Button>
       </div>
     </>

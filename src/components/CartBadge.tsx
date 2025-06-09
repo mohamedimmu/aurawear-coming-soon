@@ -16,7 +16,7 @@ export function CartBadge({
   if (totalQuantity === 0) return null;
 
   return (
-    <Badge className="absolute top-0.5 -right-0.5 h-4 w-4 rounded-full px-1">
+    <Badge className="absolute top-0 right-0 h-4 w-4 rounded-full px-1">
       {totalQuantity < 10 ? totalQuantity : "9+"}
     </Badge>
   );
