@@ -82,7 +82,7 @@ export default function OrderSummary({ initialData }: OrderSummaryProps) {
               {isCheckoutPending ? (
                 <>
                   <Loader2 className="animate-spin" />
-                  Checkout
+                  Processing...
                 </>
               ) : (
                 <>

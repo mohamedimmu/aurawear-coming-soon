@@ -1,40 +1,40 @@
 import React from "react";
-import LogoSymbol from "@/assets/logo.svg";
+import Wordmark from "@/assets/wordmark.svg";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-interface LogoProps {
+interface WordMarkProps {
   width?: number;
   height?: number;
   className?: string;
   priority?: boolean;
 }
 
-const Logo = React.memo(function Logo({
-  width = 36,
-  height = 43,
+const WordMark = React.memo(function WordMark({
+  width = 140,
+  height = 100,
   className,
   priority = false,
-}: LogoProps) {
+}: WordMarkProps) {
   return (
     <div className={cn("relative inline-block", className)}>
       <Image
         alt="Aurawear Wordmark"
-        src={LogoSymbol}
+        src={Wordmark}
         width={width}
         height={height}
         priority={priority}
-        unoptimized
         className={cn(
           "object-contain transition-colors duration-200",
           "dark:brightness-200 dark:contrast-200 dark:invert",
         )}
         quality={100}
+        unoptimized
       />
     </div>
   );
 });
 
-Logo.displayName = "WordMark";
+Wordmark.displayName = "WordMark";
 
-export default Logo;
+export default WordMark;

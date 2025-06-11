@@ -2,10 +2,10 @@ import React from "react";
 
 function PremiumActiveWear() {
   return (
-    <div>
+    <div className="px-4 py-4">
       <div className="mb-16 text-center">
-        <p className="mb-2 text-sm text-muted-foreground uppercase">Facts</p>
-        <h2 className="mx-auto max-w-3xl text-3xl leading-tight font-medium text-foreground md:text-4xl font-lora">
+        <p className="text-muted-foreground mb-2 text-sm uppercase">Facts</p>
+        <h2 className="text-foreground font-inter mx-auto max-w-3xl text-3xl leading-tight font-medium md:text-4xl">
           Choose excellence with our premium activewear selection.
         </h2>
       </div>
@@ -16,7 +16,7 @@ function PremiumActiveWear() {
           <p className="mb-4 text-5xl font-bold text-green-500 md:text-6xl">
             68%
           </p>
-          <p className="mx-auto max-w-xs text-muted-foreground">
+          <p className="text-muted-foreground mx-auto max-w-xs">
             of our fabrics are recycled, reflecting our dedication to
             sustainability.
           </p>
@@ -25,7 +25,7 @@ function PremiumActiveWear() {
           <p className="mb-4 text-5xl font-bold text-green-500 md:text-6xl">
             100%
           </p>
-          <p className="mx-auto max-w-xs text-muted-foreground">
+          <p className="text-muted-foreground mx-auto max-w-xs">
             of our technical fabrics are chemical-free, ensuring your comfort
             and safety.
           </p>

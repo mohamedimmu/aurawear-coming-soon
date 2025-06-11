@@ -3,6 +3,7 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
+import { Button } from "./ui/button";
 
 interface CarouselButtonsProps {
   carouselId: string;
@@ -19,7 +20,7 @@ const CarouselButtons = ({ carouselId }: CarouselButtonsProps) => {
     const checkScrollButtons = () => {
       const { scrollLeft, scrollWidth, clientWidth } = carousel;
       setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft + clientWidth  < scrollWidth);
+      setCanScrollRight(scrollLeft + clientWidth < scrollWidth);
     };
 
     // Initial check
@@ -50,28 +51,26 @@ const CarouselButtons = ({ carouselId }: CarouselButtonsProps) => {
 
   return (
     <div className="flex gap-2">
-      <button
+      <Button
         onClick={() => scroll("left")}
         disabled={!canScrollLeft}
-        className={cn(
-          "rounded-full bg-gray-100 p-2 hover:bg-gray-200",
-          !canScrollLeft && "cursor-not-allowed opacity-50",
-        )}
+        size="icon"
+        variant="outline"
+        className={cn("bg-muted rounded-full p-2", "cursor-pointer")}
         aria-label="Scroll left"
       >
-        <ArrowLeft className="h-5 w-5" />
-      </button>
-      <button
+        <ArrowLeft className="text-muted-foreground h-5 w-5" />
+      </Button>
+      <Button
         onClick={() => scroll("right")}
         disabled={!canScrollRight}
-        className={cn(
-          "rounded-full bg-gray-100 p-2 hover:bg-gray-200",
-          !canScrollRight && "cursor-not-allowed opacity-50",
-        )}
+        size="icon"
+        variant="outline"
+        className={cn("bg-muted rounded-full p-2", "cursor-pointer")}
         aria-label="Scroll right"
       >
         <ArrowRight className="h-5 w-5" />
-      </button>
+      </Button>
     </div>
   );
 };

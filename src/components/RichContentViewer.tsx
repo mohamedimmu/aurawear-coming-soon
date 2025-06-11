@@ -10,6 +10,7 @@ interface RichContentViewerProps {
   paragraphClassName?: string;
   listClassName?: string;
   linkClassName?: string;
+  listItemClassName?: string;
 }
 
 const RichContentViewer = ({
@@ -19,34 +20,37 @@ const RichContentViewer = ({
   paragraphClassName = "",
   listClassName = "",
   linkClassName = "",
+  listItemClassName = "",
 }: RichContentViewerProps) => {
   // Sanitize HTML to prevent XSS attacks
   const [sanitizedContent, setSanitizedContent] = useState<string>("");
- 
- useEffect(() => {
-   if (!content) return;
 
-   // Sanitize and style content on the client side
-   const cleanContent = DOMPurify.sanitize(content);
-   const styledContent = cleanContent
-     .replace(/<h1>/g, `<h1 class="${headingClassName}">`)
-     .replace(/<h2>/g, `<h2 class="${headingClassName}">`)
-     .replace(/<h3>/g, `<h3 class="${headingClassName}">`)
-     .replace(/<p>/g, `<p class="${paragraphClassName}">`)
-     .replace(/<ul>/g, `<ul class="${listClassName}">`)
-     .replace(/<ol>/g, `<ol class="${listClassName}">`)
-     .replace(/<a /g, `<a class="${linkClassName}" `);
+  useEffect(() => {
+    if (!content) return;
 
-   setSanitizedContent(styledContent);
- }, [
-   content,
-   headingClassName,
-   paragraphClassName,
-   listClassName,
-   linkClassName,
- ]);
+    // Sanitize and style content on the client side
+    const cleanContent = DOMPurify.sanitize(content);
+    const styledContent = cleanContent
+      .replace(/<h1>/g, `<h1 class="${headingClassName}">`)
+      .replace(/<h2>/g, `<h2 class="${headingClassName}">`)
+      .replace(/<h3>/g, `<h3 class="${headingClassName}">`)
+      .replace(/<p>/g, `<p class="${paragraphClassName}">`)
+      .replace(/<ul>/g, `<ul class="${listClassName}">`)
+      .replace(/<ol>/g, `<ol class="${listClassName}">`)
+      .replace(/<ul>/g, `<li class="${listItemClassName}">`)
+      .replace(/<a /g, `<a class="${linkClassName}" `);
 
- if (!content) return null;
+    setSanitizedContent(styledContent);
+  }, [
+    content,
+    headingClassName,
+    paragraphClassName,
+    listClassName,
+    linkClassName,
+    listItemClassName,
+  ]);
+
+  if (!content) return null;
   return (
     <div
       className={`rich-content ${className}`}

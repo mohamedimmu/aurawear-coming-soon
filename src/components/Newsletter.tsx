@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, FormEvent } from "react";
+import React from "react";
 import {
   Card,
   CardContent,
@@ -13,6 +13,11 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import Image, { StaticImageData } from "next/image";
 import CoverLogo from "@/assets/cover-logo.jpg";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
+import { saveFormData } from "@/app/wix-api/saveFormData";
 
 interface NewsletterProps {
   discountPercentage?: number;
@@ -20,29 +25,44 @@ interface NewsletterProps {
   imageAlt?: string;
 }
 
+const newsletterSchema = z.object({
+  email: z.string().email("Please enter a valid email address"),
+});
+
+type NewsletterForm = z.infer<typeof newsletterSchema>;
+
 const Newsletter: React.FC<NewsletterProps> = ({
   discountPercentage = 20,
   imageSrc = CoverLogo,
   imageAlt = "Aurawear Logo",
 }) => {
-  const [email, setEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<NewsletterForm>({
+    resolver: zodResolver(newsletterSchema),
+    defaultValues: {
+      email: "",
+    },
+  });
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
-
+  const onSubmit = async (data: NewsletterForm) => {
     try {
-      // Replace with your actual API call
-      await subscribeToNewsletter();
-      setStatus("success");
-      setEmail("");
+      const response = await saveFormData("SubscriberList", data);
+      if (response.success) {
+        toast.success("You're in!", {
+          description:
+            "We'll keep you posted on new drops, deals, and exclusive gear.",
+        });
+      }
     } catch {
-      setStatus("error");
+      toast.error("Something went wrong. Please try again.");
     } finally {
-      setIsLoading(false);
+      reset();
     }
+    reset();
   };
 
   return (
@@ -51,11 +71,10 @@ const Newsletter: React.FC<NewsletterProps> = ({
         <ImageSection imageSrc={imageSrc} imageAlt={imageAlt} />
         <FormSection
           discountPercentage={discountPercentage}
-          email={email}
-          setEmail={setEmail}
-          isLoading={isLoading}
-          status={status}
-          onSubmit={handleSubmit}
+          register={register}
+          errors={errors}
+          isSubmitting={isSubmitting}
+          onSubmit={handleSubmit(onSubmit)}
         />
       </div>
     </div>
@@ -83,19 +102,17 @@ const ImageSection: React.FC<{
 
 interface FormSectionProps {
   discountPercentage: number;
-  email: string;
-  setEmail: (email: string) => void;
-  isLoading: boolean;
-  status: "idle" | "success" | "error";
-  onSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  register: ReturnType<typeof useForm<NewsletterForm>>["register"];
+  errors: ReturnType<typeof useForm<NewsletterForm>>["formState"]["errors"];
+  isSubmitting: boolean;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
 const FormSection: React.FC<FormSectionProps> = ({
-  discountPercentage,
-  email,
-  setEmail,
-  isLoading,
-  status,
+  // discountPercentage,
+  register,
+  errors,
+  isSubmitting,
   onSubmit,
 }) => (
   <div className="flex min-h-full w-full items-center justify-stretch md:w-1/2">
@@ -107,38 +124,42 @@ const FormSection: React.FC<FormSectionProps> = ({
       </div>
 
       <CardHeader>
-        <CardTitle className="font-lora text-foreground text-center text-2xl font-medium md:text-3xl">
-          Unlock {discountPercentage}% Off
+        <CardTitle className="font-inter text-foreground text-center text-2xl font-medium md:text-3xl">
+          Stay Ready. Stay Ahead.
         </CardTitle>
         <CardDescription className="text-card-foreground text-center">
-          Sign up to our email to get {discountPercentage}% in your next order.
+          Get updates on new drops, gear launches, and exclusive perks.
         </CardDescription>
       </CardHeader>
 
       <CardContent>
         <form onSubmit={onSubmit} className="space-y-4">
-          <Input
-            type="email"
-            placeholder="E-mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="h-12"
-            disabled={isLoading}
-          />
-          <Button type="submit" className="h-12 w-full" disabled={isLoading}>
-            {isLoading ? "Subscribing..." : "Subscribe"}
+          <div>
+            <Input
+              type="email"
+              placeholder="E-mail"
+              {...register("email")}
+              className="h-12"
+              disabled={isSubmitting}
+            />
+            {errors.email && (
+              <p className="mt-2 text-center text-red-600">
+                {errors.email.message}
+              </p>
+            )}
+            {errors.root && (
+              <p className="mt-2 text-center text-red-600">
+                {errors.root.message}
+              </p>
+            )}
+          </div>
+          <Button
+            type="submit"
+            className="h-12 w-full cursor-pointer"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Subscribing..." : "Subscribe"}
           </Button>
-          {status === "success" && (
-            <p className="text-center text-green-600">
-              Successfully subscribed!
-            </p>
-          )}
-          {status === "error" && (
-            <p className="text-center text-red-600">
-              Something went wrong. Please try again.
-            </p>
-          )}
         </form>
       </CardContent>
     </Card>
@@ -146,9 +167,9 @@ const FormSection: React.FC<FormSectionProps> = ({
 );
 
 // Add this function in your API utilities file
-const subscribeToNewsletter = async (): Promise<void> => {
-  // Implement your newsletter subscription logic here
-  await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulated API call
-};
+// const subscribeToNewsletter = async (): Promise<void> => {
+//   // Implement your newsletter subscription logic here
+//   await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulated API call
+// };
 
 export default Newsletter;

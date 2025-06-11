@@ -7,13 +7,13 @@ export async function getCart(wixClient: WixClient) {
   try {
     return await wixClient.currentCart.getCurrentCart();
   } catch (error) {
-    if (
-      (error as { details: { applicationError: { code: string } } }).details.applicationError.code === "OWNED_CART_NOT_FOUND"
-    ) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const isOwnedCartNotFound = (error: any) =>
+      error?.details?.applicationError?.code === "OWNED_CART_NOT_FOUND";
+    if (isOwnedCartNotFound(error)) {
       return null;
-    } else {
-      throw error;
     }
+    throw error;
   }
 }
 

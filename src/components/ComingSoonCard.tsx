@@ -15,18 +15,24 @@ interface ComingSoonCardProps {
   title: string;
   image?: string | StaticImageData;
   category: string;
+  formId: string;
 }
 
-const ComingSoonCard = ({ title, image, category }: ComingSoonCardProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+const ComingSoonCard = ({
+  title,
+  image,
+  category,
+  formId,
+}: ComingSoonCardProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
       <Card
-        className="relative cursor-pointer overflow-hidden transition-shadow duration-300 hover:shadow-lg"
-        onClick={() => setIsOpen(true)}
+        className="relative cursor-pointer overflow-hidden p-0 transition-shadow duration-300 hover:shadow-lg"
+        onClick={() => setIsModalOpen(true)}
       >
-        <div className="aspect-[4/3] w-full bg-gray-100">
+        <div className="relative h-140 w-full">
           <Image
             src={image || "/placeholder.svg"}
             alt={title}
@@ -38,14 +44,15 @@ const ComingSoonCard = ({ title, image, category }: ComingSoonCardProps) => {
             unoptimized
           />
         </div>
-        <CardContent className="p-4">
-          <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t via-black/30 from-black/60 to-transparent p-4 text-white">
+
+        <CardContent className="absolute right-0 bottom-0 left-0 px-0">
+          <div className="bg-gradient-to-t from-black/60 via-black/30 to-transparent p-4 text-white">
             <h3 className="text-xl font-bold">{title}</h3>
           </div>
         </CardContent>
       </Card>
 
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="sm:max-w-[500px]">
           <DialogHeader>
             <DialogTitle className="text-center text-2xl font-bold">
@@ -54,10 +61,14 @@ const ComingSoonCard = ({ title, image, category }: ComingSoonCardProps) => {
           </DialogHeader>
           <div className="py-4">
             <h3 className="mb-2 text-center text-lg font-semibold">{title}</h3>
-            <p className="mb-6 text-center text-gray-600">
+            <p className="text-muted-foreground mb-6 text-center">
               Be the first to know when new {category} become available
             </p>
-            <NotifyForm category={category} />
+            <NotifyForm
+              category={category}
+              setIsModalOpen={setIsModalOpen}
+              formId={formId}
+            />
           </div>
         </DialogContent>
       </Dialog>

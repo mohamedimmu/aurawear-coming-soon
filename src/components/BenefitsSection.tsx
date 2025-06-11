@@ -14,31 +14,31 @@ const benefits: BenefitItem[] = [
     icon: CircleCheck,
     title: "Crafted with Quality",
     description:
-      "From premium cottons to high-performance stretch fabrics, we choose only what elevates the experience of wearing it.",
+      "We use premium cottons and high-performance fabrics to ensure comfort, durability, and a superior wearing experience.",
   },
   {
     icon: Info,
     title: "Safe and Easy Checkout",
     description:
-      "Multiple payment options. Instant confirmation. 100% secure checkout.",
+      "Enjoy multiple payment options, instant confirmation, and a fully secure checkout process every time.",
   },
   {
     icon: CircleCheck,
     title: "Pan-India Shipping",
     description:
-      "We ship across India with tracking on every order. You'll receive updates from the moment it's packed to the time it reaches you.",
+      "We deliver across India with real-time tracking from dispatch to delivery — reliable, fast, and transparent.",
   },
   {
     icon: Percent,
     title: "Need Help?",
     description:
-      "From product queries to post-order updates, we'll get back to you fast with real support.",
+      "Have questions or need updates? Our team is ready to assist you quickly with real, human support.",
   },
 ];
 
 export default function BenefitsSection() {
   return (
-    <section className="container mx-auto px-4 py-8">
+    <section className="mx-auto max-w-7xl px-4 py-8">
       <div className="bg-muted relative mb-16 aspect-[16/9] w-full overflow-hidden">
         <Image
           unoptimized
@@ -46,7 +46,7 @@ export default function BenefitsSection() {
           src={Stagepose}
           alt="Aurawear in motion"
           fill
-          className="object-cover object-center transition-transform duration-300 hover:scale-105"
+          className="object-cover object-center transition-transform duration-500 ease-in-out hover:scale-105"
           priority
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
         />
@@ -58,11 +58,11 @@ export default function BenefitsSection() {
           return (
             <div key={index} className="group text-center">
               <div className="mb-4 flex justify-center">
-                <div className="bg-primary/80 flex h-12 w-12 items-center justify-center rounded-full">
-                  <Icon className="text-primary-foreground h-7 w-7" />
+                <div className="bg-accent border-border flex h-12 w-12 items-center justify-center rounded-full border">
+                  <Icon className="text-foreground h-6 w-6" />
                 </div>
               </div>
-              <h3 className="font-lora mb-3 text-lg font-medium">
+              <h3 className="font-inter mb-3 text-lg font-medium">
                 {benefit.title}
               </h3>
               <p className="text-muted-foreground text-sm leading-relaxed font-normal">

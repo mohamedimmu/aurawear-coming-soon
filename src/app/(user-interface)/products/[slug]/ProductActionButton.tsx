@@ -48,7 +48,7 @@ export default function ProductActionButton({
           variant="default"
           size={"lg"}
           disabled={!inStock || isPending}
-          className="bg-primary text-primary-foreground w-full cursor-pointer py-6 hover:opacity-95"
+          className="bg-primary text-primary-foreground h-14 w-full cursor-pointer py-6 hover:opacity-95"
         >
           {isPending ? (
             <>
@@ -67,7 +67,7 @@ export default function ProductActionButton({
           disabled={!inStock}
           variant="outline"
           size={"lg"}
-          className="border-border mt-4 w-full cursor-pointer"
+          className="border-border mt-4 w-full cursor-pointer h-14"
           onClick={() =>
             startCheckoutFlow({ product, quantity, selectedOptions })
           }

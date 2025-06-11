@@ -4,11 +4,12 @@ import React, { useState } from "react";
 import { products } from "@wix/stores";
 import { checkInStock, findVariant } from "@/lib/utils";
 import ProductMedia from "./ProductMedia";
-import RichContentViewer from "@/components/RichContentViewer";
 import ProductPrice from "./ProductPrice";
 import ProductOptions from "./ProductOptions";
 import ProductActionButton from "./ProductActionButton";
 import { Package, Timer } from "lucide-react";
+import RichContentViewer from "@/components/RichContentViewer";
+import AdditionalInfo from "./AdditionalInfo";
 
 interface ProductDetailsProps {
   product: products.Product;
@@ -41,7 +42,6 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
     );
     return selectedChoice?.media?.items ?? [];
   });
-
   return (
     <div>
       <div className="flex flex-col gap-12 lg:flex-row">
@@ -60,7 +60,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         <div className="w-full space-y-9 lg:w-[40%]">
           {/* Product title and description */}
           <div>
-            {/* Sustainable label */}
+            {/* Ribbion */}
             {product?.ribbon && (
               <div className="font-medium text-red-600">{product.ribbon}</div>
             )}
@@ -113,6 +113,8 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             }
             quantity={1}
           />
+
+          <AdditionalInfo product={product} />
         </div>
       </div>
     </div>

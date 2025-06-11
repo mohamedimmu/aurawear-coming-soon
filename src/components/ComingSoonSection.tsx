@@ -1,22 +1,28 @@
 import React from "react";
 import ComingSoonCard from "./ComingSoonCard";
-import TshirtsandTanks from "@/assets/tshirts-tanks.jpg"
+import TshirtsandTanks from "@/assets/tshirts-tanks.jpg";
 import PantsandShorts from "@/assets/pants-shorts.jpg";
 
 const ComingSoonSection = () => {
   return (
-    <section className="container mx-auto px-4 py-8">
-      <h2 className="mb-6 text-2xl font-bold font-lora">Coming Soon</h2>
+    <section className="mx-auto max-w-7xl px-4 py-8">
+      <div className="mb-6">
+        <h2 className="font-inter xs:text-2xl text-xl font-semibold">
+          Coming Soon
+        </h2>
+      </div>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <ComingSoonCard
           title="Tanks and T-shirts"
           category="t-shirts"
           image={TshirtsandTanks}
+          formId="TshirtsTanksLeads"
         />
         <ComingSoonCard
           title="Trousers and Pants"
           category="trousers"
           image={PantsandShorts}
+          formId="PantsTrousersLeads"
         />
       </div>
     </section>

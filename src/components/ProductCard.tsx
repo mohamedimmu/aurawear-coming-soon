@@ -10,7 +10,9 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const mainImage = product.media?.mainMedia?.image;
-
+  const priceData = product?.priceData;
+  const hasDiscount =
+    priceData && priceData.discountedPrice !== priceData.price;
   return (
     <Link
       href={`/products/${product.slug}`}
@@ -32,9 +34,21 @@ const ProductCard = ({ product }: ProductCardProps) => {
           className="text-muted-foreground"
           paragraphClassName="text-sm"
         />
-        <p className="text-base font-medium">
-          MRP : {product.priceData?.formatted?.price}
-        </p>
+
+        {hasDiscount ? (
+          <div className="flex flex-row flex-wrap gap-4">
+            <p className="text-base font-medium">
+              {priceData.formatted?.discountedPrice}
+            </p>
+            <p className="text-muted-foreground text-base font-normal line-through">
+              MRP: {priceData?.formatted?.price}
+            </p>
+          </div>
+        ) : (
+          <p className="text-base font-medium">
+            MRP : {product.priceData?.formatted?.price}
+          </p>
+        )}
       </div>
     </Link>
   );

@@ -22,12 +22,12 @@ export default async function ProductResults({
   sort,
   view,
 }: ProductResultsProps) {
-  const pageSize = 12;
+  const pageSize = 20;
 
   const wixClient = await getWixServerClient();
   const products = await queryProducts(wixClient, {
     q,
-    limit: 8,
+    limit: pageSize,
     skip: (page - 1) * pageSize,
     collectionIds,
     priceMin,

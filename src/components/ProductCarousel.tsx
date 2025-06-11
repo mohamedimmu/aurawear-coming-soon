@@ -34,20 +34,14 @@ const ProductCarousel = async ({ title, slug }: Props) => {
   const carouselId = `carousel-${slug}`;
 
   return (
-    <div className="container mx-auto w-full px-4 py-8">
-      <div className="mb-6 flex items-center justify-between px-6 md:px-8 lg:px-12">
+    <div className="mx-auto w-full max-w-7xl px-4 py-8">
+      <div className="mb-6 flex items-center justify-between">
         <h2 className="font-inter xs:text-2xl text-xl font-semibold">
           {title}
         </h2>
         <div className="xxs:flex hidden items-center gap-4">
-          <Button
-            variant="ghost"
-            className="hidden !p-0 hover:!bg-transparent md:block"
-          >
-            <Link
-              href="/shop"
-              className="hover:text-muted-foreground !text-base font-medium"
-            >
+          <Button variant="ghost" className="hidden md:block">
+            <Link href="/shop" className="font-medium">
               Shop
             </Link>
           </Button>
@@ -55,7 +49,7 @@ const ProductCarousel = async ({ title, slug }: Props) => {
         </div>
       </div>
       <section className="relative w-full overflow-hidden">
-        <div className="pl-6 md:pl-8 lg:pl-12">
+        <div>
           <div className="relative">
             {/* -mr-[calc(100vw-100%)] */}
             <CarouselSlider id={carouselId}>

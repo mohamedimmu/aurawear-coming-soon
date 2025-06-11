@@ -1,6 +1,9 @@
 import ToastNotification from "@/components/ToastNotification";
 import { wixBrowserClient } from "@/lib/wix-client-browser";
-import { updateMemberInfo, UpdateMemberInfoValues } from "@/app/wix-api/members";
+import {
+  updateMemberInfo,
+  UpdateMemberInfoValues,
+} from "@/app/wix-api/members";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -12,13 +15,9 @@ export function useUpdateMember() {
     mutationFn: (variables: UpdateMemberInfoValues) =>
       updateMemberInfo(wixClient, variables),
     onSuccess() {
-      toast.custom((t) => (
-        <ToastNotification
-          variant="success"
-          modalClose={t}
-          title="Profile updated."
-        />
-      ));
+      toast.success("Profile updated", {
+        description: "Your profile information has been saved successfully.",
+      });
       setTimeout(() => {
         router.refresh();
       }, 2000);

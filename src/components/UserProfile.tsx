@@ -2,7 +2,7 @@
 
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "./ui/button";
-import { LogOut } from "lucide-react";
+import { LogOut, Package, User } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,6 +13,7 @@ import {
 import { members } from "@wix/members";
 import useAuth from "@/app/hooks/auth";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 interface UserProfileProps {
   loggedInMember: members.Member | null;
@@ -24,7 +25,9 @@ const UserProfile = ({ loggedInMember }: UserProfileProps) => {
   const [baseURL, setBaseURL] = useState("");
 
   const user = {
-    name: loggedInMember?.contact?.firstName || "",
+    name:
+      `${loggedInMember?.contact?.firstName}, ${loggedInMember?.contact?.lastName}` ||
+      "",
     email: loggedInMember?.loginEmail || "",
     avatar: "",
   };
@@ -82,15 +85,19 @@ const UserProfile = ({ loggedInMember }: UserProfileProps) => {
             </div>
           </div>
           <DropdownMenuSeparator />
-          {/* <DropdownMenuItem onClick={handleProfile}>
-          <User className="mr-2 h-4 w-4" />
-          <span>My Profile</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={handleOrderHistory}>
-          <Package className="mr-2 h-4 w-4" />
-          <span>Order History</span>
-        </DropdownMenuItem>
-        <DropdownMenuSeparator /> */}
+          <DropdownMenuItem>
+            <Link href="/profile" className="flex items-center gap-2">
+              <User className="h-4 w-4" />
+              <span>My Profile</span>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/orders" className="flex items-center gap-2">
+              <Package className="mr-2 h-4 w-4" />
+              <span>My Orders</span>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => logout(baseURL)}>
             <LogOut className="mr-2 h-4 w-4" />
             <span>Log Out</span>

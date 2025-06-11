@@ -12,64 +12,52 @@ import Autoplay from "embla-carousel-autoplay";
 import Image1 from "@/assets/hero-carousel/1.jpg";
 import Image2 from "@/assets/hero-carousel/2.jpg";
 import Image3 from "@/assets/hero-carousel/3.jpg";
-import Image4 from "@/assets/hero-carousel/4.gif";
 import Image, { StaticImageData } from "next/image";
 
 interface CarouselProps {
   id: number;
   image: StaticImageData;
+  alt: string; // Added alt for accessibility
 }
 
 const carousel: CarouselProps[] = [
-  {
-    id: 1,
-    image: Image1,
-  },
-  {
-    id: 2,
-    image: Image2,
-  },
-  {
-    id: 3,
-    image: Image3,
-  },
-  {
-    id: 4,
-    image: Image4,
-  },
+  { id: 1, image: Image1, alt: "Hero image 1" },
+  { id: 2, image: Image2, alt: "Hero image 2" },
+  { id: 3, image: Image3, alt: "Hero image 3" },
 ];
 
 export default function HeroCarousel() {
+  // Memoize carousel items to prevent unnecessary re-renders
+  const carouselItems = React.useMemo(
+    () =>
+      carousel.map((item) => (
+        <CarouselItem key={item.id}>
+          <div className="relative h-[calc(100vh-80px)] min-h-[400px] w-full sm:min-h-[500px] md:min-h-[620px]">
+            <Image
+              alt={item.alt}
+              src={item.image}
+              fill
+              priority={item.id === 1} // Only prioritize first image
+              className="object-cover object-center"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 1200px"
+              quality={85} // Reduced from 90 for better performance
+              unoptimized
+            />
+          </div>
+        </CarouselItem>
+      )),
+    [],
+  );
+
   return (
     <Carousel
-      className="relative h-full w-full"
+      className="relative w-full bg-[#e9e9e9]"
       opts={{ loop: true }}
-      plugins={[
-        Autoplay({
-          delay: 3000,
-        }),
-      ]}
+      plugins={[Autoplay({ delay: 3000 })]}
     >
-      <CarouselContent className="">
-        {carousel.map((item, index) => (
-          <CarouselItem key={item.id}>
-            <div className="relative h-screen min-h-[720px] w-full">
-              <Image
-                alt={`Slider Image ${item.id}`}
-                src={item.image}
-                fill
-                priority={item.id === 1}
-                className={`object-cover object-center ${index === 3 ? "hidden md:block" : ""}`}
-                sizes="100vw"
-                quality={90}
-                unoptimized
-              />
-            </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-      <CarouselPrevious className="left-4" />
-      <CarouselNext className="right-4" />
+      <CarouselContent>{carouselItems}</CarouselContent>
+      <CarouselPrevious className="left-2 cursor-pointer !bg-white !text-black sm:left-4" />
+      <CarouselNext className="right-2 cursor-pointer !bg-white !text-black sm:right-4" />
     </Carousel>
   );
 }
