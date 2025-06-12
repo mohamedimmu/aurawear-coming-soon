@@ -1,9 +1,5 @@
-import ToastNotification from "@/components/ToastNotification";
 import { wixBrowserClient } from "@/lib/wix-client-browser";
-import {
-  updateMemberInfo,
-  UpdateMemberInfoValues,
-} from "@/app/wix-api/members";
+import { updateMemberInfo, UpdateMemberInfoValues } from "@/wix-api/members";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -24,13 +20,7 @@ export function useUpdateMember() {
     },
     onError(error) {
       console.error(error);
-      toast.custom((t) => (
-        <ToastNotification
-          variant="warning"
-          modalClose={t}
-          title="Failed to update profile. Please try again."
-        />
-      ));
+      toast.warning("Failed to update profile. Please try again.");
     },
   });
 }

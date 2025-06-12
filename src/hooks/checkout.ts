@@ -3,10 +3,9 @@ import {
   getCheckoutUrlForCurrentCart,
   getCheckoutUrlForProduct,
   GetCheckoutUrlForProductValues,
-} from "@/app/wix-api/checkout";
+} from "@/wix-api/checkout";
 import { useState } from "react";
 import { toast } from "sonner";
-import ToastNotification from "@/components/ToastNotification";
 
 const wixClient = wixBrowserClient();
 
@@ -22,13 +21,7 @@ export function useCartCheckout() {
     } catch (error) {
       setPending(false);
       console.error(error);
-      toast.custom((t) => (
-        <ToastNotification
-          variant="warning"
-          modalClose={t}
-          title="Failed to load checkout. Please try again."
-        />
-      ));
+      toast.warning("Failed to load checkout. Please try again.");
     }
   }
 
@@ -47,13 +40,7 @@ export function useQuickBuy() {
     } catch (error) {
       setPending(false);
       console.error(error);
-      toast.custom((t) => (
-        <ToastNotification
-          variant="warning"
-          modalClose={t}
-          title="Failed to load checkout. Please try again."
-        />
-      ));
+      toast.warning("Failed to load checkout. Please try again.");
     }
   }
 

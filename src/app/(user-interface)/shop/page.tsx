@@ -1,8 +1,9 @@
 import React, { Suspense } from "react";
 import ProductResults from "./ProductResults";
-import { ProductsSort } from "@/app/wix-api/products";
+import { ProductsSort } from "@/wix-api/products";
 import { Metadata } from "next";
 import ViewModeToggle from "./ViewModeToggle";
+import { ProductGridSkeleton } from "@/components/loading/ProductGridSkeleton";
 
 interface SearchParams {
   q?: string;
@@ -44,6 +45,7 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
   } = resolvedSearchParams;
 
   const title = q ? `Results for "${q}"` : "Shop All Products";
+  const pageSize = 12;
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -51,13 +53,9 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
         {/* Main Content */}
         <div className="flex-1">
           {/* Header */}
-          <div className="mb-6 flex items-center justify-between">
+          <div className="flex items-center justify-between">
             <div>
-              <h1 className="mb-2 text-2xl font-bold">{title}</h1>
-              <p className="text-muted-foreground">
-                {/* Showing {paginatedProducts.length} of{" "}
-                {filteredAndSortedProducts.length} products */}
-              </p>
+              <h1 className="mb-1 text-2xl font-bold">{title}</h1>
             </div>
 
             {/* View Mode Toggle */}
@@ -65,7 +63,16 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
           </div>
 
           {/* Products Grid/List */}
-          <Suspense fallback={"Loading.."} key={`${q}-${page}`}>
+          <Suspense
+            fallback={
+              <ProductGridSkeleton
+                count={pageSize}
+                view={view}
+                heading={true}
+              />
+            }
+            key={`${q}-${page}`}
+          >
             <ProductResults
               q={q}
               page={parseInt(page)}
@@ -74,6 +81,7 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
               priceMax={price_max ? parseInt(price_max) : undefined}
               sort={sort as ProductsSort}
               view={view}
+              pageSize={pageSize}
             />
           </Suspense>
         </div>

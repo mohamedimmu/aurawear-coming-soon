@@ -17,7 +17,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import { saveFormData } from "@/app/wix-api/saveFormData";
+import { saveFormData } from "@/wix-api/saveFormData";
 
 interface NewsletterProps {
   discountPercentage?: number;

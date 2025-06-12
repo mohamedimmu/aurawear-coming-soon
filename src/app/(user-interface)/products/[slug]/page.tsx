@@ -1,6 +1,6 @@
 // export const dynamic = "force-dynamic";
 
-import { getProductBySlug } from "@/app/wix-api/products";
+import { getProductBySlug } from "@/wix-api/products";
 import { getWixServerClient } from "@/lib/wix-client-server";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";

@@ -6,7 +6,8 @@ import { products } from "@wix/stores";
 import WixImage from "./WixImage";
 import { getMediaUrls } from "@/lib/utils";
 import RichContentViewer from "./RichContentViewer";
-import { CircleCheck, X } from "lucide-react";
+import { CircleCheck, Loader2, Wallet, X } from "lucide-react";
+import { useCartCheckout } from "@/hooks/checkout";
 
 interface CartNotificationProps {
   product: products.Product;
@@ -29,6 +30,7 @@ export default function CartNotification({
     ? getMediaUrls(mediaItem)
     : { imageUrl: undefined, resolvedThumbnailUrl: undefined };
   const hasDiscount = priceData?.discountedPrice !== priceData?.price;
+  const { startCheckoutFlow, pending: isCheckoutPending } = useCartCheckout();
 
   if (!cartQuantity) return null;
 
@@ -78,7 +80,7 @@ export default function CartNotification({
                   content={product.description}
                   paragraphClassName="text-muted-foreground text-sm"
                 />
-                <div>
+              <div>
                   {Object.entries(selectedOptions).map(
                     ([key, value], index, array) => {
                       return (
@@ -118,21 +120,25 @@ export default function CartNotification({
         <div className="space-y-3">
           <Button
             variant="outline"
-            onClick={() => {
-              toast.dismiss(addToCartModalClose);
-            }}
             className="border-border h-12 w-full border px-4 py-3 text-center"
           >
             <Link href="/cart"> View Cart ({cartQuantity})</Link>
           </Button>
           <Button
             variant="default"
-            onClick={() => {
-              toast.dismiss(addToCartModalClose);
-            }}
+            onClick={startCheckoutFlow}
             className="bg-primary text-primary-foreground !h-12 w-full px-4 py-3 text-center"
           >
-            <Link href="/cart">Checkout</Link>
+            {isCheckoutPending ? (
+              <>
+                <Loader2 className="animate-spin" />
+                Processing...
+              </>
+            ) : (
+              <>
+                Checkout <Wallet className="ml-2" />
+              </>
+            )}
           </Button>
         </div>
       </div>

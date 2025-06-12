@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Sheet,
   SheetClose,
@@ -17,6 +17,8 @@ import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import { Switch } from "./ui/switch";
 import WordMark from "./WordMark";
+import { members } from "@wix/members";
+import useAuth from "@/hooks/auth";
 
 interface NavLink {
   name: string;
@@ -26,7 +28,7 @@ interface NavLink {
 const shopLinks: NavLink[] = [
   { name: "Home", href: "/" },
   { name: "Shop", href: "/shop" },
-  { name: "Collections", href: "/collections" },
+  // { name: "Collections", href: "/collections" },
   { name: "Coming Soon", href: "/coming-soon" },
 ];
 
@@ -62,12 +64,19 @@ const NavSection: React.FC<{ title: string; links: NavLink[] }> = ({
   </div>
 );
 
-export default function NavigationMenu() {
+interface NavigationMenuProps {
+  member?: members.Member | null;
+}
+
+export default function NavigationMenu({ member }: NavigationMenuProps) {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [shouldAnimateIcon, setShouldAnimateIcon] = useState(false);
   const { theme, setTheme } = useTheme();
   const isDarkMode = theme === "dark";
+  const { login } = useAuth();
+  const [baseURL, setBaseURL] = useState("");
 
+  const toggleTheme = () => setTheme(isDarkMode ? "light" : "dark");
   const handleOpenChange = (open: boolean) => {
     setIsSheetOpen(open);
     if (open) {
@@ -78,15 +87,16 @@ export default function NavigationMenu() {
     }
   };
 
-  const toggleTheme = () => setTheme(isDarkMode ? "light" : "dark");
-
+  useEffect(() => {
+    setBaseURL(window.location.origin);
+  }, []);
   return (
     <Sheet open={isSheetOpen} onOpenChange={handleOpenChange}>
       <SheetTrigger asChild>
         <Button
           variant="ghost"
           size="icon"
-          className="cursor-pointer hover:!bg-transparent"
+          className="cursor-pointer"
           aria-label="Menu"
         >
           <Menu className="navbar-icon" />
@@ -124,7 +134,24 @@ export default function NavigationMenu() {
 
           <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-4">
             <NavSection title="Shop" links={shopLinks} />
-            <NavSection title="Account" links={accountLinks} />
+            {member ? (
+              <NavSection title="Account" links={accountLinks} />
+            ) : (
+              <div className="space-y-4">
+                <h3 className="border-b pb-2 text-lg font-semibold">Account</h3>
+                <div className="space-y-2">
+                  <SheetClose asChild>
+                    <Button
+                      onClick={() => login(baseURL)}
+                      variant="ghost"
+                      className="block rounded px-3 py-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+                    >
+                      Login
+                    </Button>
+                  </SheetClose>
+                </div>
+              </div>
+            )}
             <NavSection title="Support" links={supportLinks} />
             <div className="space-y-4">
               <h3 className="border-b pb-2 text-lg font-semibold">Settings</h3>

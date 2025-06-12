@@ -5,12 +5,13 @@ import ComingSoonSection from "@/components/ComingSoonSection";
 import PremiumActiveWear from "@/components/PremiumActiveWear";
 import BenefitsSection from "@/components/BenefitsSection";
 import Newsletter from "@/components/Newsletter";
+import ProductCarouselSkeleton from "@/components/loading/ProductCarouselSkeleton";
 
-export default function RootLayout() {
+export default async function RootLayout() {
   return (
     <div className="space-y-8 md:space-y-12">
       <HeroCarousel />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<ProductCarouselSkeleton />}>
         <ProductCarousel title="Featured Product" slug="featured-products" />
       </Suspense>
       <ComingSoonSection />

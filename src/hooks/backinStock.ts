@@ -2,10 +2,9 @@ import { wixBrowserClient } from "@/lib/wix-client-browser";
 import {
   BackInStockNotificationRequestValues,
   createBackInStockNotificationRequest,
-} from "@/app/wix-api/backInStock";
+} from "@/wix-api/backInStock";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
-import ToastNotification from "@/components/ToastNotification";
 
 export function useCreateBackInStockNotificationRequest() {
   const wixClient = wixBrowserClient();
@@ -21,21 +20,9 @@ export function useCreateBackInStockNotificationRequest() {
           }
         ).details?.applicationError?.code === "OWNED_CART_NOT_FOUND"
       ) {
-        toast.custom((t) => (
-          <ToastNotification
-            modalClose={t}
-            variant="info"
-            title="You are already subscribed to this product."
-          />
-        ));
+        toast.info("You are already subscribed to this product.");
       } else {
-        toast.custom((t) => (
-          <ToastNotification
-            modalClose={t}
-            variant="warning"
-            title="Something went wrong. Please try again."
-          />
-        ));
+        toast.warning("Something went wrong. Please try again.");
       }
     },
   });

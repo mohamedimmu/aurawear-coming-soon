@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import WixImage from "@/components/WixImage";
 import { cn } from "@/lib/utils";
 import { getWixServerClient } from "@/lib/wix-client-server";
-import { getCollectionBySlug } from "@/app/wix-api/collections";
+import { getCollectionBySlug } from "@/wix-api/collections";
 import { notFound } from "next/navigation";
 import { JSX, Suspense } from "react";
 

@@ -28,10 +28,10 @@ const Footer = () => {
         </div>
 
         <Link
-          href="/policies"
+          href="/policy"
           className="text-secondary-foreground hover:text-muted-foreground cursor-pointer text-sm transition-colors"
         >
-          Policies
+          Policy
         </Link>
       </div>
 

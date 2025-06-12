@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { termsData } from "@/app/(policy)/policies/data";
+import { shippingData } from "@/app/(policy)/policy/data";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions",
+  title: "Shipping Policy",
 };
 
-const TermsOfService = () => {
+const ShippingReturn = () => {
   return (
     <div className="bg-background min-h-screen px-4 py-16 md:px-8">
       <div className="mx-auto max-w-4xl">
@@ -19,14 +19,14 @@ const TermsOfService = () => {
           <span className="font-medium">Back to policies</span>
         </Link>
 
-        <h1 className="font-lora text-card-foreground mb-12 text-4xl font-bold md:text-5xl">
-          Terms of Service
+        <h1 className="font-inter text-card-foreground mb-12 text-4xl font-bold md:text-5xl">
+          Shipping & Return Policy
         </h1>
 
         <div className="space-y-12">
-          {termsData.sections.map((section, index) => (
+          {shippingData.sections.map((section, index) => (
             <section key={index}>
-              <h2 className="font-lora text-card-foreground mb-6 text-2xl font-semibold md:text-3xl">
+              <h2 className="font-inter text-card-foreground mb-6 text-2xl font-semibold md:text-3xl">
                 {section.title}
               </h2>
               <p className="text-card-foreground/80 leading-relaxed whitespace-pre-line">
@@ -40,4 +40,4 @@ const TermsOfService = () => {
   );
 };
 
-export default TermsOfService;
+export default ShippingReturn;

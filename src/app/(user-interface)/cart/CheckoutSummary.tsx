@@ -3,7 +3,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { currentCart } from "@wix/ecom";
-import { useCart } from "@/app/hooks/cart";
+import { useCart } from "@/hooks/cart";
 import Link from "next/link";
 import { Info, Loader2, Wallet } from "lucide-react";
 import {
@@ -11,13 +11,13 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useCartCheckout } from "@/app/hooks/checkout";
+import { useCartCheckout } from "@/hooks/checkout";
 
 interface OrderSummaryProps {
   initialData: currentCart.Cart | null;
 }
 
-export default function OrderSummary({ initialData }: OrderSummaryProps) {
+export default function CheckoutSummary({ initialData }: OrderSummaryProps) {
   const cartQuery = useCart(initialData);
   const { startCheckoutFlow, pending: isCheckoutPending } = useCartCheckout();
 

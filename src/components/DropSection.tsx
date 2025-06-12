@@ -31,7 +31,7 @@ const DropSection = () => {
         <div className="mb-12 flex flex-col items-center space-y-2 text-center">
           <div className="flex flex-row items-center justify-center gap-4">
             <GalleryHorizontal className="text-card-foreground/80 h-12 w-12" />
-            <h2 className="font-lora xxs:text-3xl xs:text-4xl animate-hero-fade-in space-y-1 text-center text-2xl leading-[1.1] font-black tracking-tight text-black uppercase sm:text-5xl md:text-6xl md:leading-[1.2]">
+            <h2 className="font-inter xxs:text-3xl xs:text-4xl animate-hero-fade-in space-y-1 text-center text-2xl leading-[1.1] font-black tracking-tight text-black uppercase sm:text-5xl md:text-6xl md:leading-[1.2]">
               Drop 1: The Origin
             </h2>
           </div>

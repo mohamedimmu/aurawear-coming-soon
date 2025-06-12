@@ -1,4 +1,4 @@
-import { ProductsSort, queryProducts } from "@/app/wix-api/products";
+import { ProductsSort, queryProducts } from "@/wix-api/products";
 import ProductCard from "@/components/ProductCard";
 import { getWixServerClient } from "@/lib/wix-client-server";
 import { notFound } from "next/navigation";
@@ -11,6 +11,7 @@ interface ProductResultsProps {
   priceMax?: number;
   sort?: ProductsSort;
   view?: "grid" | "list";
+  pageSize?: number;
 }
 
 export default async function ProductResults({
@@ -21,8 +22,8 @@ export default async function ProductResults({
   priceMax,
   sort,
   view,
+  pageSize = 8
 }: ProductResultsProps) {
-  const pageSize = 20;
 
   const wixClient = await getWixServerClient();
   const products = await queryProducts(wixClient, {
@@ -36,9 +37,17 @@ export default async function ProductResults({
   });
 
   if (page > (products.totalPages || 1)) notFound();
-
+  const total = products?.totalCount;
+  const current = products?.items?.length;
   return (
     <div>
+      <div className="mb-8">
+        <p className="text-muted-foreground">
+          {total === 1
+            ? `Showing 1 product`
+            : `Showing ${current} of ${total} products`}
+        </p>
+      </div>
       <div
         className={
           view === "grid"
@@ -54,16 +63,3 @@ export default async function ProductResults({
     </div>
   );
 }
-
-// function LoadingSkeleton() {
-//   return (
-//     <div className="space-y-10">
-//       <Skeleton className="mx-auto h-9 w-52" />
-//       <div className="flex grid-cols-2 flex-col gap-5 sm:grid xl:grid-cols-3 2xl:grid-cols-4">
-//         {Array.from({ length: 8 }).map((_, i) => (
-//           <Skeleton key={i} className="h-[26rem]" />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }

@@ -11,7 +11,6 @@ import { wixBrowserClient } from "@/lib/wix-client-browser";
 import { toast } from "sonner";
 import CartNotification from "@/components/CartNotification";
 import { AddtoCartNotificationType } from "@/types";
-import ToastNotification from "@/components/ToastNotification";
 
 const wixClient = wixBrowserClient();
 const queryKey: QueryKey = ["cart", wixClient];
@@ -102,13 +101,7 @@ export function useUpdateCartItemQuantity() {
     onError(error, variables, context) {
       queryClient.setQueryData(queryKey, context?.previousState);
       console.error(error);
-       toast.custom((t) => (
-         <ToastNotification
-           modalClose={t}
-           variant="warning"
-           title="Something went wrong. Please try again."
-         />
-       ));
+       toast.warning("Something went wrong. Please try again.");
     },
     onSettled() {
       if (queryClient.isMutating({ mutationKey }) === 1) {
@@ -143,13 +136,7 @@ export function useRemoveCartItem() {
     onError(error, variables, context) {
       queryClient.setQueryData(queryKey, context?.previousState);
       console.error(error);
-      toast.custom((t) => (
-        <ToastNotification
-          modalClose={t}
-          variant="warning"
-          title="Something went wrong. Please try again."
-        />
-      ));
+      toast.warning("Something went wrong. Please try again.");
     },
     onSettled() {
       queryClient.invalidateQueries({ queryKey });

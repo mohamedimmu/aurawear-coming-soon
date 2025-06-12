@@ -1,9 +1,9 @@
 import React from "react";
 import { getWixServerClient } from "@/lib/wix-client-server";
-import { getCart } from "@/app/wix-api/cart";
+import { getCart } from "@/wix-api/cart";
 import CartItems from "./CartItems";
-import OrderSummary from "./OrderSummary";
 import EmptyCart from "./EmptyCart";
+import CheckoutSummary from "./CheckoutSummary";
 
 export default async function CartPage() {
   const wixClient = await getWixServerClient();
@@ -17,8 +17,8 @@ export default async function CartPage() {
         {/* Cart Items Section */}
         <CartItems initialData={cart} />
 
-        {/* Order Summary Section */}
-        <OrderSummary initialData={cart} />
+        {/* Cart Summary Section */}
+        <CheckoutSummary initialData={cart} />
       </div>
     </div>
   );

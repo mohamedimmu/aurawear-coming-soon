@@ -2,9 +2,8 @@ import { wixBrowserClient } from "@/lib/wix-client-browser";
 import {
   createProductReview,
   CreateProductReviewValues,
-} from "@/app/wix-api/reviews";
+} from "@/wix-api/reviews";
 import { useMutation } from "@tanstack/react-query";
-import ToastNotification from "@/components/ToastNotification";
 import { toast } from "sonner";
 
 export function useCreateProductReview() {
@@ -15,13 +14,7 @@ export function useCreateProductReview() {
       createProductReview(wixClient, values),
     onError(error) {
       console.error(error);
-      toast.custom((t) => (
-        <ToastNotification
-          variant="warning"
-          modalClose={t}
-          title="Failed to create review. Please try again."
-        />
-      ));
+      toast.warning("Failed to create review. Please try again.");
     },
   });
 }

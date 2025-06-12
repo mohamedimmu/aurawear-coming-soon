@@ -40,7 +40,7 @@ const Policies = () => {
           <span className="font-medium">Back to home</span>
         </Link>
 
-        <h1 className="font-lora text-card-foreground mb-12 text-4xl font-bold md:text-5xl">
+        <h1 className="font-inter text-card-foreground mb-12 text-4xl font-bold md:text-5xl">
           Policies
         </h1>
 
@@ -54,7 +54,7 @@ const Policies = () => {
                 <CardContent className="flex items-start gap-4">
                   <FileText className="text-card-foreground group-hover:text-accent-foreground h-6 w-6 transition-colors" />
                   <div>
-                    <h2 className="font-lora text-card-foreground group-hover:text-accent-foreground mb-2 text-xl font-semibold transition-colors md:text-2xl">
+                    <h2 className="font-inter text-card-foreground group-hover:text-accent-foreground mb-2 text-xl font-semibold transition-colors md:text-2xl">
                       {policy.title}
                     </h2>
                     <p className="text-card-foreground leading-relaxed">

@@ -4,7 +4,7 @@ import {
   useCart,
   useRemoveCartItem,
   useUpdateCartItemQuantity,
-} from "@/app/hooks/cart";
+} from "@/hooks/cart";
 import { Button } from "@/components/ui/button";
 import WixImage from "@/components/WixImage";
 import { formatINRCurrency } from "@/lib/utils";
@@ -86,16 +86,16 @@ function CartItem({ item }: CartItemProps) {
 
   return (
     <div className="border-b pb-8">
-      <div className="flex flex-col gap-4 sm:flex-row">
+      <div className="flex gap-4 sm:flex-row">
         {/* Product Image */}
-        <div className="bg-muted h-40 w-full sm:w-40">
+        <div className="bg-muted relative h-32 w-32 flex-shrink-0">
           <Link href={`/products/${slug}`}>
             <WixImage
               mediaIdentifier={item.image}
-              width={160}
-              height={160}
+              width={208}
+              height={208}
               alt={item.productName?.translated || "Product image"}
-              className="bg-secondary flex-none"
+              className="bg-secondary aspect-square flex-none"
             />
           </Link>
         </div>
@@ -103,7 +103,7 @@ function CartItem({ item }: CartItemProps) {
         {/* Product Details */}
         <div className="flex flex-grow flex-col justify-between">
           <div>
-            <div className="flex items-start justify-between">
+            <div className="flex flex-col items-start justify-between sm:flex-row gap-2">
               <div className="space-y-1.5">
                 <Link
                   href={`/products/${slug}`}
@@ -132,7 +132,7 @@ function CartItem({ item }: CartItemProps) {
                 )}
                 {/* Rate per Item */}
                 <div className="text-muted-foreground flex items-center gap-2 text-base">
-                  {item.price?.formattedConvertedAmount}
+                  {item?.quantity} x {item.price?.formattedConvertedAmount}
                   {item.fullPrice &&
                     item.fullPrice.amount !== item.price?.amount && (
                       <span className="text-muted-foreground line-through">
@@ -148,7 +148,7 @@ function CartItem({ item }: CartItemProps) {
           </div>
 
           {/* Actions */}
-          <div className="mt-4 flex flex-wrap items-center gap-4">
+          <div className="mt-6 flex flex-wrap items-center gap-4">
             {/* Quantity Controls */}
             <div className="flex items-center border">
               <Button

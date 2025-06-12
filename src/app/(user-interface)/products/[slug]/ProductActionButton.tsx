@@ -4,8 +4,8 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { CreditCard, Loader2, ShoppingCartIcon } from "lucide-react";
 import { products } from "@wix/stores";
-import { useAddItemToCart } from "@/app/hooks/cart";
-import { useQuickBuy } from "@/app/hooks/checkout";
+import { useAddItemToCart } from "@/hooks/cart";
+import { useQuickBuy } from "@/hooks/checkout";
 
 interface ProductActionButtonProps {
   product: products.Product;
@@ -67,7 +67,7 @@ export default function ProductActionButton({
           disabled={!inStock}
           variant="outline"
           size={"lg"}
-          className="border-border mt-4 w-full cursor-pointer h-14"
+          className="border-border mt-4 h-14 w-full cursor-pointer"
           onClick={() =>
             startCheckoutFlow({ product, quantity, selectedOptions })
           }

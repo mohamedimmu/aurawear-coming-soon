@@ -1,9 +1,9 @@
 // export const dynamic = "force-dynamic";
 
-import { queryProducts } from "@/app/wix-api/products";
+import { queryProducts } from "@/wix-api/products";
 import CarouselSlider from "./CarouselSlider";
 import ProductCard from "./ProductCard";
-import { getCollectionBySlug } from "@/app/wix-api/collections";
+import { getCollectionBySlug } from "@/wix-api/collections";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import CarouselButtons from "./CarouselButton";
@@ -51,7 +51,6 @@ const ProductCarousel = async ({ title, slug }: Props) => {
       <section className="relative w-full overflow-hidden">
         <div>
           <div className="relative">
-            {/* -mr-[calc(100vw-100%)] */}
             <CarouselSlider id={carouselId}>
               {products.map((product) => (
                 <div

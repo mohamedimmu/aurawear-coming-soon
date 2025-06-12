@@ -27,10 +27,10 @@ export default function ProductOptions({
                 <Button
                   variant="outline"
                   className={cn(
-                    "!h-auto cursor-pointer w-full border-2 px-4 py-3 transition-all duration-300 ease-in-out hover:bg-transparent",
+                    "!h-auto w-full cursor-pointer border-2 px-4 py-3 transition-all duration-300 ease-in-out hover:bg-transparent",
                     selectedOptions[option.name || ""] === choice.description
-                      ? "border-primary"
-                      : "border-border hover:border-primary",
+                      ? "!border-primary"
+                      : "border-border hover:!border-primary",
                     !checkInStock(product, {
                       ...selectedOptions,
                       [option.name || ""]: choice.description || "",

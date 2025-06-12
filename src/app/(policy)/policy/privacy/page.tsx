@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { privacyData } from "@/app/(policy)/policies/data";
+import { privacyData } from "@/app/(policy)/policy/data";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -19,13 +19,13 @@ const PrivacyPolicy = () => {
           <span className="font-medium">Back to policies</span>
         </Link>
 
-        <h1 className="font-lora text-card-foreground mb-12 text-4xl font-bold md:text-5xl">
+        <h1 className="font-inter text-card-foreground mb-12 text-4xl font-bold md:text-5xl">
           Privacy Policy
         </h1>
 
         <div className="space-y-12">
           <section>
-            <h2 className="font-lora text-card-foreground mb-6 text-2xl font-semibold md:text-3xl">
+            <h2 className="font-inter text-card-foreground mb-6 text-2xl font-semibold md:text-3xl">
               {privacyData.contactInfo.title}
             </h2>
             <p className="text-card-foreground/80 leading-relaxed whitespace-pre-line">
@@ -35,7 +35,7 @@ const PrivacyPolicy = () => {
 
           {privacyData.sections.map((section, index) => (
             <section key={index}>
-              <h2 className="font-lora text-card-foreground mb-6 text-2xl font-semibold md:text-3xl">
+              <h2 className="font-inter text-card-foreground mb-6 text-2xl font-semibold md:text-3xl">
                 {section.title}
               </h2>
               <p className="text-card-foreground/80 leading-relaxed whitespace-pre-line">

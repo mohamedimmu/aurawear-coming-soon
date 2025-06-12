@@ -13,7 +13,7 @@ import PhoneNumbersForm from "./PhoneNumbersForm";
 import AddressesForm from "./AddressesForm";
 import NicknameBioForm from "./NicknameBioForm";
 import { User } from "lucide-react";
-import { useUpdateMember } from "@/app/hooks/members";
+import { useUpdateMember } from "@/hooks/members";
 
 // Define address schema
 const addressSchema = z.object({

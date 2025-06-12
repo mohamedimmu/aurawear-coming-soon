@@ -19,7 +19,7 @@ import {
 import { toast } from "sonner";
 import ToastNotification from "@/components/ToastNotification";
 import { Loader, Send } from "lucide-react";
-import { saveFormData } from "@/app/wix-api/saveFormData";
+import { saveFormData } from "@/wix-api/saveFormData";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCart } from "@/app/hooks/cart";
+import { useCart } from "@/hooks/cart";
 import { Badge } from "./ui/badge";
 import { currentCart } from "@wix/ecom";
 

@@ -14,7 +14,7 @@ export default function HeroSection() {
 
         {/* Heading */}
         <div className="flex w-full flex-col items-center">
-          <h1 className="font-lora xxs:text-5xl xs:text-6xl animate-hero-fade-in space-y-1 text-center text-4xl leading-[1.1] font-medium tracking-tight text-black uppercase sm:text-7xl md:text-8xl md:leading-[1.2]">
+          <h1 className="font-inter xxs:text-5xl xs:text-6xl animate-hero-fade-in space-y-1 text-center text-4xl leading-[1.1] font-medium tracking-tight text-black uppercase sm:text-7xl md:text-8xl md:leading-[1.2]">
             <span className="block">Be First</span>
             <span className="block">to Experience the</span>
             <span className="from-peach to-primary block bg-gradient-to-r bg-clip-text">

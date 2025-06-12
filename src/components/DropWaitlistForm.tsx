@@ -260,7 +260,7 @@ export default function DropWaitlistForm() {
               <Button
                 type="submit"
                 variant="default"
-                className="bg-primary hover:bg-primary/80 font-lora h-12 w-full px-8 py-3 text-lg font-bold text-white shadow-lg transition-all duration-500 focus:outline-none active:scale-100"
+                className="bg-primary hover:bg-primary/80 font-inter h-12 w-full px-8 py-3 text-lg font-bold text-white shadow-lg transition-all duration-500 focus:outline-none active:scale-100"
               >
                 {form.formState.isSubmitting ? (
                   <div className="flex items-center justify-center gap-2">

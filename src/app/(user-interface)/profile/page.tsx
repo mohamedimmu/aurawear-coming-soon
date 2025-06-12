@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getLoggedInMember } from "@/app/wix-api/members";
+import { getLoggedInMember } from "@/wix-api/members";
 import { notFound } from "next/navigation";
 import { getWixServerClient } from "@/lib/wix-client-server";
 import ProfileForm from "./ProfileForm";

@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { members } from "@wix/members";
-import useAuth from "@/app/hooks/auth";
+import useAuth from "@/hooks/auth";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 

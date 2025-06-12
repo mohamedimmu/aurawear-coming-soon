@@ -1,4 +1,4 @@
-import { AddToCartValues } from "./app/wix-api/cart";
+import { AddToCartValues } from "./wix-api/cart";
 
 interface AddtoCartNotificationType extends AddToCartValues {
   mediaItem: products.MediaItem | undefined;

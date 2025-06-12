@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Loader2, Mail } from "lucide-react";
-import { saveFormData } from "@/app/wix-api/saveFormData";
+import { saveFormData } from "@/wix-api/saveFormData";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -25,7 +25,7 @@ type FormValues = z.infer<typeof formSchema>;
 const NotifyForm = ({
   category,
   setIsModalOpen,
-  formId
+  formId,
 }: {
   category: string;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
