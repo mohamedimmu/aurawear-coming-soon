@@ -1,7 +1,14 @@
 import React from "react";
 import MyOrders from "./MyOrders";
+import { getLoggedInMember } from "@/wix-api/members";
+import { notFound } from "next/navigation";
+import { getWixServerClient } from "@/lib/wix-client-server";
 
-export default function OrderPage() {
+export default async function OrderPage() {
+  const wixClient = await getWixServerClient();
+  const member = await getLoggedInMember(wixClient);
+
+  if (!member) notFound();
   return (
     <div className="mx-auto max-w-7xl px-4 py-8">
       <div className="mb-8">
