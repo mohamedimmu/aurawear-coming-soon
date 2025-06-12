@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  useCart,
-  useRemoveCartItem,
-  useUpdateCartItemQuantity,
-} from "@/hooks/cart";
+import { useRemoveCartItem, useUpdateCartItemQuantity } from "@/hooks/cart";
 import { Button } from "@/components/ui/button";
 import WixImage from "@/components/WixImage";
 import { formatINRCurrency } from "@/lib/utils";
@@ -12,20 +8,14 @@ import { currentCart } from "@wix/ecom";
 import { Minus, Package, Plus, Timer, Trash } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import { UseQueryResult } from "@tanstack/react-query";
 
 interface CartItemsProps {
-  initialData: currentCart.Cart | null;
+  cartQuery: UseQueryResult<currentCart.Cart | null, Error>;
+  cartQuantity: number;
 }
 
-export default function CartItems({ initialData }: CartItemsProps) {
-  const cartQuery = useCart(initialData);
-
-  const cartQuantity =
-    cartQuery.data?.lineItems?.reduce(
-      (acc, item) => acc + (item.quantity || 0),
-      0,
-    ) || 0;
-
+export default function CartItems({ cartQuery, cartQuantity }: CartItemsProps) {
   return (
     <div className="lg:col-span-2">
       <h1 className="mb-6 text-2xl font-medium">Cart ({cartQuantity})</h1>
@@ -88,14 +78,14 @@ function CartItem({ item }: CartItemProps) {
     <div className="border-b pb-8">
       <div className="flex gap-4 sm:flex-row">
         {/* Product Image */}
-        <div className="bg-muted relative h-32 w-32 flex-shrink-0">
+        <div className="bg-muted relative flex h-32 w-32 flex-shrink-0 items-center justify-center sm:h-40 sm:w-40">
           <Link href={`/products/${slug}`}>
             <WixImage
               mediaIdentifier={item.image}
-              width={208}
-              height={208}
+              width={160}
+              height={160}
               alt={item.productName?.translated || "Product image"}
-              className="bg-secondary aspect-square flex-none"
+              className="bg-secondary aspect-square flex-none object-cover"
             />
           </Link>
         </div>
@@ -103,7 +93,7 @@ function CartItem({ item }: CartItemProps) {
         {/* Product Details */}
         <div className="flex flex-grow flex-col justify-between">
           <div>
-            <div className="flex flex-col items-start justify-between sm:flex-row gap-2">
+            <div className="flex flex-col items-start justify-between gap-4 sm:flex-row">
               <div className="space-y-1.5">
                 <Link
                   href={`/products/${slug}`}
@@ -143,7 +133,9 @@ function CartItem({ item }: CartItemProps) {
               </div>
 
               {/* Full Price */}
-              <div className="font-medium">MRP: {lineItemPrice}</div>
+              <div className="font-medium whitespace-nowrap">
+                MRP:&nbsp;{lineItemPrice}
+              </div>
             </div>
           </div>
 
@@ -186,7 +178,7 @@ function CartItem({ item }: CartItemProps) {
               variant="ghost"
               size={"icon"}
               onClick={() => handleRemoveItem(productId)}
-              className="flex h-8 w-8 items-center justify-center border"
+              className="flex h-8 w-8 cursor-pointer items-center justify-center border transition-all duration-300 ease-in-out hover:bg-red-500 hover:text-white dark:hover:bg-red-600"
               aria-label="Remove item"
             >
               <Trash className="h-4 w-4" />

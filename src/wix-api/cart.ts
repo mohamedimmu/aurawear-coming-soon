@@ -5,11 +5,13 @@ import { products } from "@wix/stores";
 
 export async function getCart(wixClient: WixClient) {
   try {
-    return await wixClient.currentCart.getCurrentCart();
+    const cart = await wixClient.currentCart.getCurrentCart();
+    return cart;
   } catch (error) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const isOwnedCartNotFound = (error: any) =>
       error?.details?.applicationError?.code === "OWNED_CART_NOT_FOUND";
+
     if (isOwnedCartNotFound(error)) {
       return null;
     }

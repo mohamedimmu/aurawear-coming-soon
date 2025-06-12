@@ -43,9 +43,13 @@ export default function ContactInformation() {
               <div>
                 <h3 className="font-medium">Address</h3>
                 <p className="text-muted-foreground mt-1">
-                  1234 Fashion Street
+                  No. 108/1, 3 Meenakshi avenue,
                   <br />
-                  New York, NY 10001
+                  Jaswanth nagar,
+                  <br />
+                  Mogappair west,
+                  <br />
+                  Chennai - 600037
                 </p>
               </div>
             </div>

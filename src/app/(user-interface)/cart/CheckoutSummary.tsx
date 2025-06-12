@@ -3,7 +3,6 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { currentCart } from "@wix/ecom";
-import { useCart } from "@/hooks/cart";
 import Link from "next/link";
 import { Info, Loader2, Wallet } from "lucide-react";
 import {
@@ -12,20 +11,18 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useCartCheckout } from "@/hooks/checkout";
+import { UseQueryResult } from "@tanstack/react-query";
 
 interface OrderSummaryProps {
-  initialData: currentCart.Cart | null;
+  cartQuery: UseQueryResult<currentCart.Cart | null, Error>;
+  cartQuantity: number;
 }
 
-export default function CheckoutSummary({ initialData }: OrderSummaryProps) {
-  const cartQuery = useCart(initialData);
+export default function CheckoutSummary({
+  cartQuery,
+  cartQuantity,
+}: OrderSummaryProps) {
   const { startCheckoutFlow, pending: isCheckoutPending } = useCartCheckout();
-
-  const cartQuantity =
-    cartQuery.data?.lineItems?.reduce(
-      (acc, item) => acc + (item.quantity || 0),
-      0,
-    ) || 0;
 
   return (
     <div className="lg:col-span-1">

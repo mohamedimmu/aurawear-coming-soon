@@ -1,5 +1,3 @@
-// export const dynamic = "force-dynamic";
-
 import { getProductBySlug } from "@/wix-api/products";
 import { getWixServerClient } from "@/lib/wix-client-server";
 import { Metadata } from "next";

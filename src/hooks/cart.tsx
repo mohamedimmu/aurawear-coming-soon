@@ -6,7 +6,13 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { currentCart } from "@wix/ecom";
-import { addToCart, getCart, removeCartItem, updateCartItemQuantity, UpdateCartItemQuantityValues } from "../wix-api/cart";
+import {
+  addToCart,
+  getCart,
+  removeCartItem,
+  updateCartItemQuantity,
+  UpdateCartItemQuantityValues,
+} from "../wix-api/cart";
 import { wixBrowserClient } from "@/lib/wix-client-browser";
 import { toast } from "sonner";
 import CartNotification from "@/components/CartNotification";
@@ -101,7 +107,7 @@ export function useUpdateCartItemQuantity() {
     onError(error, variables, context) {
       queryClient.setQueryData(queryKey, context?.previousState);
       console.error(error);
-       toast.warning("Something went wrong. Please try again.");
+      toast.warning("Something went wrong. Please try again.");
     },
     onSettled() {
       if (queryClient.isMutating({ mutationKey }) === 1) {
@@ -115,8 +121,7 @@ export function useUpdateCartItemQuantity() {
 export function useRemoveCartItem() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (productId: string) =>
-      removeCartItem(wixClient, productId),
+    mutationFn: (productId: string) => removeCartItem(wixClient, productId),
     onMutate: async (productId) => {
       // Cancelling the existing query operation
       await queryClient.cancelQueries({ queryKey });

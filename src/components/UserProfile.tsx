@@ -87,7 +87,7 @@ const UserProfile = ({ loggedInMember }: UserProfileProps) => {
           <DropdownMenuSeparator />
           <DropdownMenuItem>
             <Link href="/profile" className="flex items-center gap-2">
-              <User className="h-4 w-4" />
+              <User className="mr-2 h-4 w-4" />
               <span>My Profile</span>
             </Link>
           </DropdownMenuItem>

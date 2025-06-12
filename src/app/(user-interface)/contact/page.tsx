@@ -1,10 +1,9 @@
-import ContactForm from "@/app/(user-interface)/contact/ContactForm";
-
 import React from "react";
 import FAQ from "./FAQ";
 import HelpandSupport from "./HelpandSupport";
 import ContactInformation from "./ContactInformation";
-import InteractiveMap from "./InteractiveMap";
+import ContactForm from "./ContactForm";
+// import InteractiveMap from "./InteractiveMap";
 
 export default function ContactPage() {
   return (
@@ -17,7 +16,6 @@ export default function ContactPage() {
           or services. Reach out to us and we&apos;ll respond as soon as we can.
         </p>
       </div>
-
       <div>
         <h2 className="mb-6 text-2xl font-semibold">Get in Touch</h2>
       </div>
@@ -27,14 +25,9 @@ export default function ContactPage() {
           <ContactForm />
         </div>
       </div>
-
       <FAQ />
-
-      {/* Help & Support Section */}
       <HelpandSupport />
-
-      {/* Map Section */}
-      <InteractiveMap />
+      {/* <InteractiveMap /> */}
     </div>
   );
 }

@@ -80,7 +80,7 @@ export default function CartNotification({
                   content={product.description}
                   paragraphClassName="text-muted-foreground text-sm"
                 />
-              <div>
+                <div>
                   {Object.entries(selectedOptions).map(
                     ([key, value], index, array) => {
                       return (
@@ -120,14 +120,16 @@ export default function CartNotification({
         <div className="space-y-3">
           <Button
             variant="outline"
-            className="border-border h-12 w-full border px-4 py-3 text-center"
+            asChild
+            className="border-border h-12 w-full cursor-pointer border px-4 py-3 text-center"
+            onClick={() => toast.dismiss(addToCartModalClose)}
           >
             <Link href="/cart"> View Cart ({cartQuantity})</Link>
           </Button>
           <Button
             variant="default"
             onClick={startCheckoutFlow}
-            className="bg-primary text-primary-foreground !h-12 w-full px-4 py-3 text-center"
+            className="bg-primary text-primary-foreground !h-12 w-full cursor-pointer px-4 py-3 text-center"
           >
             {isCheckoutPending ? (
               <>

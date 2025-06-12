@@ -42,7 +42,9 @@ export default function WixImage({
       ? wixMedia.getScaledToFillImageUrl(mediaIdentifier, width, height, {})
       : wixMedia.getImageUrl(mediaIdentifier).url
     : placeholder;
-    
+
+  console.log(mediaIdentifier);
+
   return (
     <img
       src={imageUrl}

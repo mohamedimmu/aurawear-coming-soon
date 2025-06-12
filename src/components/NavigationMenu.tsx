@@ -5,6 +5,7 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
+  SheetDescription,
   SheetFooter,
   SheetHeader,
   SheetTitle,
@@ -75,6 +76,7 @@ export default function NavigationMenu({ member }: NavigationMenuProps) {
   const isDarkMode = theme === "dark";
   const { login } = useAuth();
   const [baseURL, setBaseURL] = useState("");
+  const [memberId, setMemberId] = useState<string | null>(member?._id || null);
 
   const toggleTheme = () => setTheme(isDarkMode ? "light" : "dark");
   const handleOpenChange = (open: boolean) => {
@@ -89,7 +91,11 @@ export default function NavigationMenu({ member }: NavigationMenuProps) {
 
   useEffect(() => {
     setBaseURL(window.location.origin);
-  }, []);
+    if (member) {
+      setMemberId(member?.contactId || null);
+    }
+  }, [member]);
+
   return (
     <Sheet open={isSheetOpen} onOpenChange={handleOpenChange}>
       <SheetTrigger asChild>
@@ -97,7 +103,7 @@ export default function NavigationMenu({ member }: NavigationMenuProps) {
           variant="ghost"
           size="icon"
           className="cursor-pointer"
-          aria-label="Menu"
+          aria-label="Open navigation menu"
         >
           <Menu className="navbar-icon" />
         </Button>
@@ -105,21 +111,23 @@ export default function NavigationMenu({ member }: NavigationMenuProps) {
       <SheetContent
         side="top"
         className="h-screen min-h-[420px] overflow-auto [&>button]:hidden"
+        aria-describedby="Navigation menu"
       >
         <div className="space-y-10 p-6">
-          <SheetTitle className="mt-4 flex flex-col items-center justify-center gap-4 text-center">
-            {/* Center - Logo */}
-            <Link
-              href="/"
-              aria-label="Aurawear Logo"
-              className="flex items-center leading-none"
-            >
-              <WordMark width={360} height={21} />
-            </Link>
-            {/* <p className="mb-1 text-2xl font-bold">Aura wear</p> */}
-            <p className="text-muted-foreground font-medium">Own your vibe</p>
-          </SheetTitle>
           <SheetHeader>
+            <SheetTitle className="mt-4 flex flex-col items-center justify-center gap-4 text-center">
+              {/* Center - Logo */}
+              <Link
+                href="/"
+                aria-label="Aurawear Logo"
+                className="flex items-center leading-none"
+              >
+                <WordMark width={360} height={21} />
+              </Link>
+            </SheetTitle>
+            <SheetDescription className="text-muted-foreground mt-2.5 text-center text-base font-medium">
+              Own your vibe
+            </SheetDescription>
             <div className="flex items-center justify-end gap-4">
               <SheetClose asChild>
                 <X
@@ -134,7 +142,7 @@ export default function NavigationMenu({ member }: NavigationMenuProps) {
 
           <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-4">
             <NavSection title="Shop" links={shopLinks} />
-            {member ? (
+            {member && memberId ? (
               <NavSection title="Account" links={accountLinks} />
             ) : (
               <div className="space-y-4">
@@ -144,7 +152,7 @@ export default function NavigationMenu({ member }: NavigationMenuProps) {
                     <Button
                       onClick={() => login(baseURL)}
                       variant="ghost"
-                      className="block rounded px-3 py-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+                      className="block w-full justify-start rounded px-3 py-2 text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
                     >
                       Login
                     </Button>
