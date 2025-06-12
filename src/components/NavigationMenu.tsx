@@ -66,7 +66,7 @@ const NavSection: React.FC<{ title: string; links: NavLink[] }> = ({
 );
 
 interface NavigationMenuProps {
-  member?: members.Member | null;
+  member: members.Member | null;
 }
 
 export default function NavigationMenu({ member }: NavigationMenuProps) {

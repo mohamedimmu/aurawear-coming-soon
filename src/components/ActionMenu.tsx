@@ -10,8 +10,13 @@ import { Sheet, SheetContent } from "./ui/sheet";
 import SearchPanel from "./SearchPanel";
 import NavigationMenu from "./NavigationMenu";
 import Link from "next/link";
+import { members } from "@wix/members";
 
-export default async function ActionMenu() {
+interface ActionMenuProps {
+  member: members.Member | null;
+}
+
+export default async function ActionMenu({ member }: ActionMenuProps) {
   const wixClient = await getWixServerClient();
   const [cart, loggedInMember] = await Promise.all([
     getCart(wixClient),
@@ -64,7 +69,7 @@ export default async function ActionMenu() {
       </Button>
       <UserProfile loggedInMember={loggedInMember} />
       <div className="flex items-center gap-4 sm:hidden">
-        <NavigationMenu />
+        <NavigationMenu member={member} />
       </div>
     </div>
   );

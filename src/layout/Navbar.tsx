@@ -39,7 +39,7 @@ const Navbar = async () => {
           </Link>
 
           {/* Right side - Icons */}
-          <ActionMenu />
+          <ActionMenu member={member} />
         </div>
       </div>
     </nav>
