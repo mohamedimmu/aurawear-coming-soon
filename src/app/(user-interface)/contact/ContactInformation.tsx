@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { SUPPORT_EMAIL, WHATSAPP_PHONE } from "@/lib/constants";
 
 export default function ContactInformation() {
   return (
@@ -14,7 +15,13 @@ export default function ContactInformation() {
               </div>
               <div>
                 <h3 className="font-medium">Phone</h3>
-                <p className="text-muted-foreground mt-1">+91 8778525311</p>
+                <a
+                  href={`tel:+${WHATSAPP_PHONE}`}
+                  className="text-muted-foreground hover:text-primary mt-1 block transition-colors"
+                  aria-label={`Call us at ${WHATSAPP_PHONE}`}
+                >
+                  ${WHATSAPP_PHONE}
+                </a>
               </div>
             </div>
           </CardContent>
@@ -28,7 +35,13 @@ export default function ContactInformation() {
               </div>
               <div>
                 <h3 className="font-medium">Email</h3>
-                <p className="text-muted-foreground mt-1">info@aurawear.com</p>
+                <a
+                  href={`mailto:${SUPPORT_EMAIL}`}
+                  className="text-muted-foreground hover:text-primary mt-1 block transition-colors"
+                  aria-label="Send us an email at info@aurawear.com"
+                >
+                  {SUPPORT_EMAIL}
+                </a>
               </div>
             </div>
           </CardContent>

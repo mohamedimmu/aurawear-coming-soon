@@ -26,7 +26,7 @@ const UserProfile = ({ loggedInMember }: UserProfileProps) => {
 
   const user = {
     name:
-      `${loggedInMember?.contact?.firstName}, ${loggedInMember?.contact?.lastName}` ||
+      `${loggedInMember?.contact?.firstName} ${loggedInMember?.contact?.lastName}` ||
       "",
     email: loggedInMember?.loginEmail || "",
     avatar: "",
@@ -71,10 +71,10 @@ const UserProfile = ({ loggedInMember }: UserProfileProps) => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent
-          className="w-64"
+          className="w-64 p-2"
           align="end"
-          sideOffset={8} // Added offset to prevent overlap with trigger
-          collisionPadding={8} // Added padding to handle screen edge
+          // sideOffset={8} // Added offset to prevent overlap with trigger
+          // collisionPadding={8} // Added padding to handle screen edge
         >
           <div className="flex items-center justify-start gap-2 p-2">
             <div className="flex flex-col space-y-1 leading-none">
@@ -87,20 +87,20 @@ const UserProfile = ({ loggedInMember }: UserProfileProps) => {
           <DropdownMenuSeparator />
           <DropdownMenuItem>
             <Link href="/profile" className="flex items-center gap-2">
-              <User className="mr-2 h-4 w-4" />
-              <span>My Profile</span>
+              <User className="mr-2 h-5 w-5" />
+              <span className="text-base">My Profile</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
             <Link href="/orders" className="flex items-center gap-2">
-              <Package className="mr-2 h-4 w-4" />
-              <span>My Orders</span>
+              <Package className="mr-2 h-5 w-5" />
+              <span className="text-base">My Orders</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => logout(baseURL)}>
-            <LogOut className="mr-2 h-4 w-4" />
-            <span>Log Out</span>
+            <LogOut className="mr-2 h-5 w-5" />
+            <span className="text-base">Log Out</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

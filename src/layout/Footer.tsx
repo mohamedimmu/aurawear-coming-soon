@@ -1,5 +1,7 @@
-import { Copyright, Instagram, Mail } from "lucide-react";
+import { Copyright, Mail } from "lucide-react";
+import { FaWhatsapp, FaInstagram } from "react-icons/fa";
 import Link from "next/link";
+import { INSTAGRAM_LINK, SUPPORT_EMAIL, WHATSAPP_PHONE } from "@/lib/constants";
 
 const Footer = () => {
   return (
@@ -7,18 +9,31 @@ const Footer = () => {
       <div className="mx-auto flex w-full max-w-7xl flex-row flex-wrap items-center justify-between gap-6">
         <div className="flex items-center gap-6">
           <a
-            href="https://www.instagram.com/aurawear.in"
+            href={INSTAGRAM_LINK}
+            aria-label="Connect with us on Insatgram"
             target="_blank"
             rel="noopener noreferrer"
             className="text-secondary-foreground hover:text-muted-foreground cursor-pointer transition-colors"
           >
-            <Instagram className="h-6 w-6" />
+            <FaInstagram className="h-6 w-6" />
           </a>
           <a
-            href="mailto:info@aurawear.in"
+            href={`mailto:${SUPPORT_EMAIL}`}
+            aria-label="Contact us via email"
+            rel="noopener noreferrer"
+            target="_blank"
             className="text-secondary-foreground hover:text-muted-foreground cursor-pointer transition-colors"
           >
             <Mail className="h-6 w-6" />
+          </a>
+          <a
+            href={`https://wa.me/${WHATSAPP_PHONE}`}
+            rel="noopener noreferrer"
+            target="_blank"
+            aria-label="Chat with us on WhatsApp"
+            className="text-secondary-foreground hover:text-muted-foreground cursor-pointer transition-colors"
+          >
+            <FaWhatsapp className="h-6 w-6" />
           </a>
         </div>
 

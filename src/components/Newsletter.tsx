@@ -116,14 +116,14 @@ const FormSection: React.FC<FormSectionProps> = ({
   onSubmit,
 }) => (
   <div className="flex min-h-full w-full items-center justify-stretch md:w-1/2">
-    <Card className="bg-card h-full w-full justify-center p-8 md:p-12">
+    <Card className="bg-card h-full w-full justify-center py-8">
       <div className="flex justify-center">
         <div className="flex h-12 w-12 items-center justify-center rounded-full">
           <Mail className="text-primary-foreground h-6 w-6" />
         </div>
       </div>
 
-      <CardHeader>
+      <CardHeader className="">
         <CardTitle className="font-inter text-foreground text-center text-2xl font-medium md:text-3xl">
           Stay Ready. Stay Ahead.
         </CardTitle>
@@ -132,7 +132,7 @@ const FormSection: React.FC<FormSectionProps> = ({
         </CardDescription>
       </CardHeader>
 
-      <CardContent>
+      <CardContent className="">
         <form onSubmit={onSubmit} className="space-y-4">
           <div>
             <Input

@@ -6,6 +6,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { env } from "@/env";
 import ThemeProvider from "@/lib/ThemeProvider";
 import ReactQueryProvider from "@/components/ReactQueryProvider";
+import WhatsappFloating from "@/components/WhatsappFloatingIcon";
 
 const grotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -49,12 +50,12 @@ export default function RootLayout({
           <ThemeProvider
             attribute="class"
             defaultTheme="light"
-            // defaultTheme="system"
-            // enableSystem={true}
+            enableSystem={true}
             // disableTransitionOnChange
           >
             {children}
             <Toaster richColors position="top-right" />
+            <WhatsappFloating />
           </ThemeProvider>
         </ReactQueryProvider>
       </body>

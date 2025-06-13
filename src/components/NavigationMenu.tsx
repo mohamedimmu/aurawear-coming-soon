@@ -12,7 +12,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "./ui/button";
-import { Instagram, Mail, Menu, Moon, Sun, X } from "lucide-react";
+import { Mail, Menu, Moon, Sun, X } from "lucide-react";
+import { FaWhatsapp, FaInstagram } from "react-icons/fa";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
@@ -20,6 +21,7 @@ import { Switch } from "./ui/switch";
 import WordMark from "./WordMark";
 import { members } from "@wix/members";
 import useAuth from "@/hooks/auth";
+import { INSTAGRAM_LINK, SUPPORT_EMAIL, WHATSAPP_PHONE } from "@/lib/constants";
 
 interface NavLink {
   name: string;
@@ -176,18 +178,31 @@ export default function NavigationMenu({ member }: NavigationMenuProps) {
         <SheetFooter className="flex items-center justify-center">
           <div className="flex items-center gap-6">
             <a
-              href="https://www.instagram.com/aurawear.in"
+              href={INSTAGRAM_LINK}
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground hover:text-primary transition-colors"
+              aria-label="Connect with us on Insatgram"
             >
-              <Instagram className="h-6 w-6" />
+              <FaInstagram className="h-6 w-6" />
             </a>
             <a
-              href="mailto:info@aurawear.in"
+              href={`mailto:${SUPPORT_EMAIL}`}
+              aria-label="Contact us via email"
+              rel="noopener noreferrer"
+              target="_blank"
               className="text-foreground hover:text-primary transition-colors"
             >
               <Mail className="h-6 w-6" />
+            </a>
+            <a
+              href={`https://wa.me/${WHATSAPP_PHONE}`}
+              rel="noopener noreferrer"
+              target="_blank"
+              aria-label="Chat with us on WhatsApp"
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              <FaWhatsapp className="h-6 w-6" />
             </a>
           </div>
         </SheetFooter>

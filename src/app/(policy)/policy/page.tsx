@@ -14,18 +14,18 @@ const Policies = () => {
       title: "Privacy Policy",
       description:
         "Learn how we collect, use, and protect your personal information.",
-      path: "/policies/privacy",
+      path: "/policy/privacy",
     },
     {
       title: "Shipping & Return Policy",
       description:
         "Information about our shipping methods, returns, and refunds.",
-      path: "/policies/shipping-return",
+      path: "/policy/shipping-return",
     },
     {
       title: "Terms of Service",
       description: "The rules and guidelines for using our services.",
-      path: "/policies/terms",
+      path: "/policy/terms",
     },
   ];
 
@@ -40,7 +40,7 @@ const Policies = () => {
           <span className="font-medium">Back to home</span>
         </Link>
 
-        <h1 className="font-inter text-card-foreground mb-12 text-4xl font-bold md:text-5xl">
+        <h1 className="font-inter text-card-foreground mb-12 text-4xl font-semibold md:text-5xl">
           Policies
         </h1>
 
@@ -48,13 +48,13 @@ const Policies = () => {
           {policies.map((policy) => (
             <Card
               key={policy.path}
-              className="bg-card hover:bg-accent group shadow-sm duration-300 transition-all ease-in-out"
+              className="bg-card hover:bg-accent group shadow-sm transition-all duration-300 ease-in-out"
             >
               <Link href={policy.path} className="p-4">
                 <CardContent className="flex items-start gap-4">
-                  <FileText className="text-card-foreground group-hover:text-accent-foreground h-6 w-6 transition-colors" />
+                  <FileText className="text-card-foreground group-hover:text-accent-foreground h-6 w-6 shrink-0 transition-colors" />
                   <div>
-                    <h2 className="font-inter text-card-foreground group-hover:text-accent-foreground mb-2 text-xl font-semibold transition-colors md:text-2xl">
+                    <h2 className="font-inter text-card-foreground group-hover:text-accent-foreground mb-2 text-xl font-medium transition-colors md:text-2xl">
                       {policy.title}
                     </h2>
                     <p className="text-card-foreground leading-relaxed">

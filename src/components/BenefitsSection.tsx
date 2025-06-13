@@ -1,5 +1,5 @@
 import React from "react";
-import { CircleCheck, Info, Percent } from "lucide-react";
+import { Ban, MessageCircle, Sparkles, Truck } from "lucide-react";
 import Image from "next/image";
 import Stagepose from "@/assets/stageshot.jpg";
 
@@ -11,35 +11,35 @@ interface BenefitItem {
 
 const benefits: BenefitItem[] = [
   {
-    icon: CircleCheck,
-    title: "Crafted with Quality",
+    icon: Truck,
+    title: "48-Hour Dispatch",
     description:
-      "We use premium cottons and high-performance fabrics to ensure comfort, durability, and a superior wearing experience.",
+      "Orders are packed and shipped within 48 hours so you get your items quickly and reliably.",
   },
   {
-    icon: Info,
-    title: "Safe and Easy Checkout",
+    icon: Sparkles,
+    title: "Premium Quality",
     description:
-      "Enjoy multiple payment options, instant confirmation, and a fully secure checkout process every time.",
+      "Crafted using handpicked fabrics and modern tailoring for an elevated everyday look and lasting comfort.",
   },
   {
-    icon: CircleCheck,
-    title: "Pan-India Shipping",
-    description:
-      "We deliver across India with real-time tracking from dispatch to delivery — reliable, fast, and transparent.",
-  },
-  {
-    icon: Percent,
+    icon: MessageCircle,
     title: "Need Help?",
     description:
       "Have questions or need updates? Our team is ready to assist you quickly with real, human support.",
+  },
+  {
+    icon: Ban,
+    title: "No Returns or Exchange",
+    description:
+      "We follow a no return or exchange policy. Please read the product details before purchasing.",
   },
 ];
 
 export default function BenefitsSection() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-8">
-      <div className="bg-muted relative mb-16 aspect-[16/9] w-full overflow-hidden">
+      <div className="bg-muted relative mb-10 aspect-[16/9] w-full overflow-hidden">
         <Image
           unoptimized
           quality={80}

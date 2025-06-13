@@ -9,7 +9,7 @@ export default async function CartPage() {
   const cart = await getCart(wixClient);
 
   return (
-    <div className="mx-auto mt-12 max-w-7xl px-4 py-8">
+    <div className="mx-auto mt-8 max-w-7xl px-4 py-8">
       <Cart initialData={cart} />
     </div>
   );

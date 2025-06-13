@@ -48,7 +48,7 @@ export default function WixImage({
   return (
     <img
       src={imageUrl}
-      alt={alt ?? ""}
+      alt={alt ?? "Aurawear Image"}
       width={width}
       height={height}
       {...imgProps}

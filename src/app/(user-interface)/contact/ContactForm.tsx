@@ -132,15 +132,20 @@ const ContactForm: React.FC = () => {
             )}
           />
 
-          <Button variant="default" size="lg" type="submit" className="w-full">
+          <Button
+            variant="default"
+            size="lg"
+            type="submit"
+            className="w-full cursor-pointer text-base"
+          >
             {form.formState.isSubmitting ? (
               <span className="flex items-center justify-center gap-2">
-                <Loader className="h-6 w-6 animate-spin" />
+                <Loader className="!h-4 !w-4 animate-spin" />
                 <span>Submitting...</span>
               </span>
             ) : (
               <span className="flex items-center justify-center gap-2">
-                <Send className="h-6 w-6" />
+                <Send className="!h-4 !w-4" />
                 Send Message
               </span>
             )}
