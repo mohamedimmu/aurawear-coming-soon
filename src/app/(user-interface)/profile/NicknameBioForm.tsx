@@ -5,10 +5,10 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { UseFormReturn } from "react-hook-form";
-import { FormValues } from "./ProfileForm";
+import { ProfileFormValues } from "./ProfileForm";
 
 interface NicknameBioFormProps {
-  form: UseFormReturn<FormValues>;
+  form: UseFormReturn<ProfileFormValues>;
   isEditing: boolean;
 }
 

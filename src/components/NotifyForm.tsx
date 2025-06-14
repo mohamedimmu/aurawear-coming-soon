@@ -15,44 +15,92 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Loader2, Mail } from "lucide-react";
 import { saveFormData } from "@/wix-api/saveFormData";
+import { LucideIcon } from "lucide-react";
+import { useCreateBackInStockNotificationRequest } from "@/hooks/backinStock";
+import { products } from "@wix/stores";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
 });
 
-type FormValues = z.infer<typeof formSchema>;
+export type NotifyFormValues = z.infer<typeof formSchema>;
+
+type NotifyFormBase = {
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  buttonName?: string;
+  defaultEmail?: string;
+  Icon?: LucideIcon;
+  toastSuccessMessage?: string;
+  toastSuccessDescription?: string;
+};
+
+type FormSubmissionProps = NotifyFormBase & {
+  type: "formSubmission";
+  product?: never;
+  selectedOptions?: never;
+  baseUrl?: never;
+  wixFormId: string;
+};
+
+type StockNotificationProps = NotifyFormBase & {
+  type: "stockNotification";
+  product: products.Product;
+  selectedOptions: Record<string, string>;
+  baseUrl: string;
+  wixFormId?: never;
+};
+
+export type NotifyFormProps = FormSubmissionProps | StockNotificationProps;
 
 const NotifyForm = ({
-  category,
   setIsModalOpen,
-  formId,
-}: {
-  category: string;
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  formId: string;
-}) => {
-  const form = useForm<FormValues>({
+  wixFormId,
+  buttonName = "Notify me",
+  defaultEmail = "",
+  Icon = Mail,
+  type,
+  toastSuccessMessage = "Thanks for your interest!",
+  toastSuccessDescription = "You'll receive updates soon.",
+  product,
+  selectedOptions,
+  baseUrl,
+}: NotifyFormProps) => {
+  const form = useForm<NotifyFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
+      email: defaultEmail,
     },
   });
 
-  async function onSubmit(data: FormValues) {
-    try {
-      const response = await saveFormData(formId, data);
-      if (response.success) {
-        toast.success("Thanks for your interest!", {
-          description: `We'll notify you when new ${category} become available.`,
-        });
+  const { isPending, mutate } = useCreateBackInStockNotificationRequest();
+
+  async function onSubmit(data: NotifyFormValues) {
+    if (wixFormId && type === "formSubmission") {
+      try {
+        const response = await saveFormData(wixFormId, data);
+        if (response.success) {
+          toast.success(toastSuccessMessage, {
+            description: toastSuccessDescription,
+          });
+        }
+      } catch {
+        toast.error("Something went wrong. Please try again.");
+      } finally {
+        form.reset();
+        setIsModalOpen(false);
       }
-    } catch {
-      toast.error("Something went wrong. Please try again.");
-    } finally {
-      form.reset();
-      setIsModalOpen(false);
     }
-    form.reset();
+
+    if (type === "stockNotification") {
+      mutate({
+        email: data.email,
+        itemUrl: baseUrl + "/products/" + product.slug,
+        product,
+        selectedOptions,
+        form,
+        setIsModalOpen,
+      });
+    }
   }
 
   return (
@@ -71,16 +119,25 @@ const NotifyForm = ({
             </FormItem>
           )}
         />
-        <Button type="submit" variant="default" className="w-full">
-          {form.formState.isSubmitting ? (
+        <Button
+          type="submit"
+          variant="default"
+          className="w-full cursor-pointer"
+          disabled={isPending || form.formState.isSubmitting}
+        >
+          {form.formState.isSubmitting || isPending ? (
             <>
               <Loader2 className="mr-2 h-5 w-5 animate-spin" />
               <span>Submitting...</span>
             </>
           ) : (
             <>
-              <Mail className="mr-2 h-5 w-5" />
-              <span>Notify me</span>
+              {Icon ? (
+                <Icon className="mr-2 h-5 w-5" />
+              ) : (
+                <Mail className="mr-2 h-5 w-5" />
+              )}
+              <span>{buttonName}</span>
             </>
           )}
         </Button>

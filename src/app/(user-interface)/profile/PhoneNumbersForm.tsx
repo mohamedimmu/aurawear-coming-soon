@@ -4,11 +4,11 @@ import React from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { UseFormReturn } from "react-hook-form";
-import { FormValues } from "./ProfileForm";
+import { ProfileFormValues } from "./ProfileForm";
 import { Phone } from "lucide-react";
 
 interface PhoneNumbersFormProps {
-  form: UseFormReturn<FormValues>;
+  form: UseFormReturn<ProfileFormValues>;
   isEditing: boolean;
 }
 

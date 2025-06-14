@@ -43,8 +43,6 @@ export default function WixImage({
       : wixMedia.getImageUrl(mediaIdentifier).url
     : placeholder;
 
-  console.log(mediaIdentifier);
-
   return (
     <img
       src={imageUrl}

@@ -131,7 +131,7 @@ export default function NavigationMenu({ member }: NavigationMenuProps) {
               Own your vibe
             </SheetDescription>
             <div className="flex items-center justify-end gap-4">
-              <SheetClose asChild>
+              <SheetClose asChild className="cursor-pointer">
                 <X
                   className={cn(
                     "h-6 w-6 transition-transform duration-300 ease-in-out hover:rotate-90",

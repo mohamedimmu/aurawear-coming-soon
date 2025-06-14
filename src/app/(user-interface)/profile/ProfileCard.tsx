@@ -3,13 +3,13 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { UseFormReturn } from "react-hook-form";
-import { FormValues } from "./ProfileForm";
+import { ProfileFormValues } from "./ProfileForm";
 import { Badge } from "@/components/ui/badge";
 import { BadgeCheckIcon, XCircleIcon } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface ProfileCardProps {
-  form: UseFormReturn<FormValues>;
+  form: UseFormReturn<ProfileFormValues>;
 }
 
 export default function ProfileCard({ form }: ProfileCardProps) {

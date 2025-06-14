@@ -1,7 +1,7 @@
 import React from "react";
 import ComingSoonCard from "./ComingSoonCard";
-import TshirtsandTanks from "@/assets/tshirts-tanks.jpg";
-import PantsandShorts from "@/assets/pants-shorts.jpg";
+import TshirtsandTanks from "@/assets/category/tshirts.jpg";
+import PantsandShorts from "@/assets/category/joggers.png";
 
 const ComingSoonSection = () => {
   return (

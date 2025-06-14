@@ -41,17 +41,17 @@ const formSchema = z.object({
 });
 
 // Define form values type
-export type FormValues = z.infer<typeof formSchema>;
+export type ProfileFormValues = z.infer<typeof formSchema>;
 
 interface ProfileFormProps {
-  initialValues: FormValues;
+  initialValues: ProfileFormValues;
 }
 
 export default function ProfileForm({ initialValues }: ProfileFormProps) {
   const [isEditing, setIsEditing] = useState(false);
 
   // Initialize form with default values
-  const form = useForm<FormValues>({
+  const form = useForm<ProfileFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       ...initialValues,
@@ -83,7 +83,7 @@ export default function ProfileForm({ initialValues }: ProfileFormProps) {
   const mutation = useUpdateMember();
 
   // Handle form submission
-  const onSubmit = (values: FormValues) => {
+  const onSubmit = (values: ProfileFormValues) => {
     // Prepare data for mutation, including dateOfBirth in customFields
 
     // Here you would typically call your mutation

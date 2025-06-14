@@ -3,6 +3,7 @@ import { memo } from "react";
 import WhatsAppFloatingIcon from "@/assets/social-icons/whatsapp-floating-icon.svg";
 import { cn } from "@/lib/utils";
 import { WHATSAPP_PHONE } from "@/lib/constants";
+import Link from "next/link";
 
 interface WhatsappFloatingProps {
   phoneNumber?: string;
@@ -14,13 +15,12 @@ const WhatsappFloating = memo(function WhatsappFloating({
   className,
 }: WhatsappFloatingProps) {
   return (
-    <a
+    <Link
       href={`https://wa.me/${phoneNumber}`}
       rel="noopener noreferrer"
       target="_blank"
       className={cn(
-        "fixed right-4 bottom-10 z-50 h-14 w-14 transition-transform hover:scale-110",
-        "animate-bounce hover:animate-none",
+        "fixed right-4 bottom-10 z-50 h-12 w-12 transition-transform hover:scale-110",
         className,
       )}
       aria-label="Chat with us on WhatsApp"
@@ -28,13 +28,13 @@ const WhatsappFloating = memo(function WhatsappFloating({
       <Image
         src={WhatsAppFloatingIcon}
         alt="WhatsApp Support"
-        width={56}
-        height={56}
-        priority={false}
+        width={48}
+        height={48}
         className="h-full w-full"
         unoptimized
+        priority={false}
       />
-    </a>
+    </Link>
   );
 });
 

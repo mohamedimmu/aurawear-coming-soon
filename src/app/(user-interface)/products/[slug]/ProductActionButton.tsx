@@ -64,6 +64,7 @@ export default function ProductActionButton({
 
         {/* Buy now button */}
         <Button
+          {...props}
           disabled={!inStock}
           variant="outline"
           size={"lg"}

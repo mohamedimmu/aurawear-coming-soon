@@ -20,7 +20,7 @@ export default function ContactInformation() {
                   className="text-muted-foreground hover:text-primary mt-1 block transition-colors"
                   aria-label={`Call us at ${WHATSAPP_PHONE}`}
                 >
-                  ${WHATSAPP_PHONE}
+                  {WHATSAPP_PHONE}
                 </a>
               </div>
             </div>

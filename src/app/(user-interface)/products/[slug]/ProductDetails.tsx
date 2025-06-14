@@ -10,6 +10,7 @@ import ProductActionButton from "./ProductActionButton";
 import { Package, Timer } from "lucide-react";
 import RichContentViewer from "@/components/RichContentViewer";
 import AdditionalInfo from "./AdditionalInfo";
+import BackInStockNotification from "./BackInStockNotification";
 
 interface ProductDetailsProps {
   product: products.Product;
@@ -101,18 +102,32 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           />
 
           {/* Add to Cart / Buy Now */}
-          <ProductActionButton
-            inStock={inStock}
-            product={product}
-            selectedOptions={selectedOptions}
-            selectedVariant={selectedVariant}
-            media={
-              !!selectedOptionsMedia?.length
-                ? selectedOptionsMedia
-                : product.media?.items
-            }
-            quantity={1}
-          />
+          {inStock ? (
+            <ProductActionButton
+              inStock={inStock}
+              product={product}
+              selectedOptions={selectedOptions}
+              selectedVariant={selectedVariant}
+              media={
+                !!selectedOptionsMedia?.length
+                  ? selectedOptionsMedia
+                  : product.media?.items
+              }
+              quantity={1}
+            />
+          ) : (
+            <BackInStockNotification
+              inStock={inStock}
+              product={product}
+              selectedOptions={selectedOptions}
+              className="w-full"
+              media={
+                !!selectedOptionsMedia?.length
+                  ? selectedOptionsMedia
+                  : product.media?.items
+              }
+            />
+          )}
 
           <AdditionalInfo product={product} />
         </div>

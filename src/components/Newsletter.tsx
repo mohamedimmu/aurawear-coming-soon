@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import { Mail } from "lucide-react";
+import { BellRing } from "lucide-react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import Image, { StaticImageData } from "next/image";
@@ -116,10 +116,11 @@ const FormSection: React.FC<FormSectionProps> = ({
   onSubmit,
 }) => (
   <div className="flex min-h-full w-full items-center justify-stretch md:w-1/2">
-    <Card className="bg-card h-full w-full justify-center py-8">
+    <Card className="bg-card h-full w-full justify-center py-8 px-4">
       <div className="flex justify-center">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full">
-          <Mail className="text-primary-foreground h-6 w-6" />
+        <div className="mb-4 bg-primary/5 relative flex h-20 w-20 items-center justify-center rounded-full p-4">
+          <BellRing className="text-primary animate-in h-14 w-14" />
+          <div className="bg-primary/10 absolute inset-0 animate-ping rounded-full"></div>
         </div>
       </div>
 
@@ -165,11 +166,5 @@ const FormSection: React.FC<FormSectionProps> = ({
     </Card>
   </div>
 );
-
-// Add this function in your API utilities file
-// const subscribeToNewsletter = async (): Promise<void> => {
-//   // Implement your newsletter subscription logic here
-//   await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulated API call
-// };
 
 export default Newsletter;

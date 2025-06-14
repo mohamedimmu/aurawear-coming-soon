@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/dialog";
 import NotifyForm from "./NotifyForm";
 import Image, { StaticImageData } from "next/image";
+import { Mail } from "lucide-react";
+import { DialogDescription } from "@radix-ui/react-dialog";
 
 interface ComingSoonCardProps {
   title: string;
@@ -53,11 +55,19 @@ const ComingSoonCard = ({
       </Card>
 
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="sm:max-w-[500px]">
+        <DialogContent
+          aria-describedby="notify-dialog-description"
+          className="sm:max-w-[500px]"
+        >
           <DialogHeader>
             <DialogTitle className="text-center text-2xl font-bold">
               Coming Soon in Upcoming Drops
             </DialogTitle>
+            <DialogDescription className="sr-only">
+              Stay ahead of the curve! Sign up for email notifications and be
+              the first to know when our new {category} collection drops.
+              Don&apos;t miss out on our latest styles.
+            </DialogDescription>
           </DialogHeader>
           <div className="py-4">
             <h3 className="mb-2 text-center text-lg font-semibold">{title}</h3>
@@ -65,9 +75,13 @@ const ComingSoonCard = ({
               Be the first to know when new {category} become available
             </p>
             <NotifyForm
-              category={category}
+              type="formSubmission"
               setIsModalOpen={setIsModalOpen}
-              formId={formId}
+              wixFormId={formId} //formId to save in the wix cms
+              buttonName="Notify me"
+              Icon={Mail}
+              toastSuccessMessage="Thanks for your interest!"
+              toastSuccessDescription={`We'll notify you when new ${category} become available.`}
             />
           </div>
         </DialogContent>

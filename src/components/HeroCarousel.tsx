@@ -9,10 +9,12 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import Image1 from "@/assets/hero-carousel/1.jpg";
-import Image2 from "@/assets/hero-carousel/2.jpg";
-import Image3 from "@/assets/hero-carousel/3.jpg";
+import Image1 from "@/assets/banner/1.png";
+import Image2 from "@/assets/banner/2.png";
+import Image3 from "@/assets/banner/3.jpg";
 import Image, { StaticImageData } from "next/image";
+import { Button } from "./ui/button";
+import Link from "next/link";
 
 interface CarouselProps {
   id: number;
@@ -43,6 +45,18 @@ export default function HeroCarousel() {
               quality={85} // Reduced from 90 for better performance
               unoptimized
             />
+            {/* Add overlay gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+            <div className="absolute inset-0 mb-24 flex items-end justify-center">
+              <Button
+                asChild
+                variant="default"
+                size="lg"
+                className="transition-transform duration-300 hover:scale-105"
+              >
+                <Link href="/shop">Shop Now</Link>
+              </Button>
+            </div>
           </div>
         </CarouselItem>
       )),
@@ -53,7 +67,7 @@ export default function HeroCarousel() {
     <Carousel
       className="relative w-full bg-[#e9e9e9]"
       opts={{ loop: true }}
-      plugins={[Autoplay({ delay: 3000 })]}
+      plugins={[Autoplay({ delay: 5000 })]}
     >
       <CarouselContent>{carouselItems}</CarouselContent>
       <CarouselPrevious className="left-2 cursor-pointer !bg-white !text-black sm:left-4" />
